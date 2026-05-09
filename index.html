@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Lab Escape Game</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="LabEscape" />
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="qcm.css" />
+  </head>
+  <body align="center">
+    <!-- LOGIN CONTAINER -->
+    <div id="login-container">
+      <div class="glass-card">
+        <!-- LOGIN FORM -->
+        <div id="login-view">
+          <div class="logo-section">
+            <h2>Patho Quest</h2>
+            <p>Laboratory Authentication Required Select Researcher</p>
+          </div>
+
+          <form id="login-form">
+            <div class="character-selection">
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="gender" value="man" checked />
+                  <div class="option-content">
+                    <img
+                      src="assets/caracters/man/idel2.png"
+                      alt="Male Researcher"
+                      width="300"
+                      height="180"
+                    />
+                  </div>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="gender" value="woman" />
+                  <div class="option-content">
+                    <img
+                      src="assets/caracters/woman/idel1.png"
+                      alt="Female Researcher"
+                      width="300"
+                      height="180"
+                    />
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <input
+                type="password"
+                id="password"
+                placeholder="Access Code"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-login">
+              <span class="btn-text">Initialize Session</span>
+              <span class="loader"></span>
+            </button>
+            <p id="error-message"></p>
+          </form>
+
+          <div class="auth-toggle">
+            <p>
+              Don't have an account?
+              <a href="#" id="go-to-register">Create one</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- SIGNUP FORM -->
+        <div id="signup-view" style="display: none">
+          <div class="logo-section">
+            <h2>Join PathQuest</h2>
+            <p>Create Your Researcher Account</p>
+          </div>
+
+          <form id="signup-form">
+            <div class="input-group">
+              <input
+                type="text"
+                id="signup-username"
+                placeholder="Username"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <input
+                type="email"
+                id="signup-email"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <input
+                type="password"
+                id="signup-password"
+                placeholder="Access Code (min 6 characters)"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <input
+                type="password"
+                id="signup-confirm-password"
+                placeholder="Confirm Access Code"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-signup">
+              <span class="btn-text">Create Account</span>
+              <span class="loader"></span>
+            </button>
+            <p id="signup-error-message"></p>
+          </form>
+
+          <div class="auth-toggle">
+            <p>
+              Already have an account? <a href="#" id="go-to-login">Sign in</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME CONTAINER -->
+    <div id="game-container" style="display: none"></div>
+
+    <!-- GAME CONTROLS PANEL -->
+    <div id="controls-panel" aria-label="Touch controls">
+      <div class="controls-group controls-left">
+        <button
+          id="btn-jump"
+          class="game-control-button"
+          aria-label="Jump"
+          onpointerdown="window.GameControls && window.GameControls.pressJump()"
+          onpointerup="window.GameControls && window.GameControls.releaseJump()"
+        >
+          ⬆️
+        </button>
+      </div>
+      <div class="controls-group controls-right">
+        <button
+          id="btn-left"
+          class="game-control-button"
+          aria-label="Move left"
+          onpointerdown="window.GameControls && window.GameControls.pressLeft()"
+          onpointerup="window.GameControls && window.GameControls.releaseLeft()"
+          onpointerleave="window.GameControls && window.GameControls.releaseLeft()"
+        >
+          ⬅️
+        </button>
+        <button
+          id="btn-right"
+          class="game-control-button"
+          aria-label="Move right"
+          onpointerdown="window.GameControls && window.GameControls.pressRight()"
+          onpointerup="window.GameControls && window.GameControls.releaseRight()"
+          onpointerleave="window.GameControls && window.GameControls.releaseRight()"
+        >
+          ➡️
+        </button>
+      </div>
+    </div>
+
+    <!-- Auth -->
+    <script type="module" src="./auth.js"></script>
+    <!-- Scenes (modules are imported by auth.js) -->
+    <!-- auth.js imports GameScene which in turn loads LabScene -->
+
+    <!-- Service Worker Registration -->
+    <script>
+      // Register Service Worker for PWA
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("service-worker.js")
+            .then((registration) => {
+              console.log(
+                "✓ Service Worker registered successfully:",
+                registration,
+              );
+            })
+            .catch((error) => {
+              console.error("✗ Service Worker registration failed:", error);
+            });
+        });
+      } else {
+        console.warn("Service Workers not supported in this browser");
+      }
+    </script>
+  </body>
+</html>

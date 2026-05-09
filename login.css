@@ -1,0 +1,302 @@
+/* ===== Reset & Body ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Press Start 2P", cursive, Arial, sans-serif;
+  background-image: url(./assets//background/login.png);
+  background-repeat: no-repeat; /* Don’t repeat */
+  background-position: center center; /* Center the image */
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ===== Login Container ===== */
+#login-container {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 15px; /* Increased padding for better breathability */
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(78, 84, 200, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* SCROLLBAR LOGIC */
+  width: 100%;
+  max-width: 650px; /* Keeps it from getting too wide */
+  max-height: 90vh; /* Prevents the form from leaving the screen */
+  overflow-y: auto; /* Enables vertical scrolling only when needed */
+  overflow-x: hidden; /* Prevents accidental horizontal shifting */
+
+  animation: fadeIn 0.8s ease-in-out;
+
+  /* Custom Scrollbar Styling (Webkit) */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(78, 84, 200, 0.6) transparent;
+}
+
+/* Chrome, Edge, and Safari Scrollbar styling */
+#login-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+#login-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#login-container::-webkit-scrollbar-thumb {
+  background-color: rgba(78, 84, 200, 0.6);
+  border-radius: 20px;
+  border: 1px solid transparent;
+}
+
+#login-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 242, 255, 0.8); /* Glows cyan on hover */
+}
+
+/* ===== Headings ===== */
+#login-container h2 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px #4e54c8;
+}
+
+/* ===== Inputs ===== */
+#login-form input,
+#signup-form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 2px solid #4e54c8;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 14px;
+  text-shadow: 0 0 2px #000;
+  transition: all 0.3s ease;
+}
+
+#login-form input:focus,
+#signup-form input:focus {
+  border-color: #8f94fb;
+  box-shadow: 0 0 10px #8f94fb;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Button ===== */
+#login-form button,
+#signup-form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(45deg, #4e54c8, #8f94fb);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #4e54c8;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+#login-form button:hover,
+#signup-form button:hover {
+  background: linear-gradient(45deg, #8f94fb, #4e54c8);
+  box-shadow: 0 0 20px #8f94fb;
+  transform: scale(1.05);
+}
+
+/* Loader hidden by default */
+.loader {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+/* Spin animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading state */
+.btn-login.loading .btn-text,
+.btn-signup.loading .btn-text {
+  display: none;
+}
+
+.btn-login.loading .loader,
+.btn-signup.loading .loader {
+  display: block;
+}
+
+/* ===== Error Message ===== */
+#error-message,
+#signup-error-message {
+  color: #ff4c4c;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 0 5px #000;
+}
+
+/* ===== Auth Toggle ===== */
+.auth-toggle {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.auth-toggle p {
+  color: #aaaaaa;
+  font-size: 12px;
+  text-shadow: none;
+  white-space: normal;
+  display: block;
+}
+
+.auth-toggle a {
+  color: #00f2ff;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px #00f2ff;
+}
+
+.auth-toggle a:hover {
+  color: #4e54c8;
+  text-shadow: 0 0 10px #4e54c8;
+  text-decoration: underline;
+}
+
+/* ===== Game Container ===== */
+#game-container {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  max-height: 100vh;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#game-container canvas {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ===== Touch Controls Panel ===== */
+#controls-panel {
+  position: fixed;
+  opacity: 0.6;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none;
+  user-select: none;
+  touch-action: none;
+}
+
+.controls-group {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.controls-left {
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.controls-right {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.game-control-button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.08);
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) inset;
+  transition:
+    transform 0.1s ease,
+    background 0.15s ease;
+  touch-action: manipulation;
+  opacity: 0.6;
+}
+
+.game-control-button:hover,
+.game-control-button:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.game-control-button:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#btn-jump {
+  border-color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.08);
+  color: #000;
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .game-control-button {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+    border-width: 2px;
+  }
+}
+.radio-group {
+  display: flex;
+  flex-direction: row; /* Force horizontal alignment */
+  gap: 12px; /* Space between the two buttons */
+  width: 100%;
+}
+p {
+  color: aquamarine;
+  font-size: 20px;
+  text-shadow: 0 0 10px #4e54c8;
+
+  /* Prevents the text from jumping to the next line */
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
