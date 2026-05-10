@@ -12,9 +12,13 @@ export const LEVELS = {
     spawn: { x: 100, y: 500 },
     questionData: level1Questions,
     questionCount: 7,
-    hint: "This case involves a 45-year-old patient with a suspicious skin lesion. Review the tumor classification link for more details.",
-    bonusInfo:
-      "Recognizing cellular atypia early is crucial for diagnosing malignant lesions. Well done on identifying the key features!",
+    hint: "A 42-year-old patient presented with a slowly enlarging, painless mass in the left thigh. \n\nThe mass had been present for 8 months. Examination revealed a deep-seated, soft, non-mobile swelling measuring 10 cm, located in the posterior compartment of the thigh. MRI showed a well-circumscribed, gelatinous-appearing mass.",
+    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=6025",
+    badgeUrl: "../assets/badges/badge_level2.png",
+    bonusInfo: [
+      { text: "Recognizing cellular atypia early is crucial for diagnosing malignant lesions.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
+      { text: "Well done on identifying the key features!", image: "" }
+    ],
     platforms: [
       { x: 400, y: 100, width: 150, height: 20, id: "q1" },
       { x: 700, y: 130, width: 150, height: 20, id: "q2" },
@@ -66,8 +70,12 @@ export const LEVELS = {
     questionData: level2Questions,
     questionCount: 5,
     hint: "A 58-year-old patient presented with a slowly growing, painless, deep-seated mass in the retroperitoneum. \n\nThe mass had been present for several years. Examination revealed visible increase in abdominal girth. \n\nCT scan revealed a mass measuring 12cm and showing low attenuation.",
-    bonusInfo:
-      "Glioblastomas often present with necrosis and vascular proliferation. Your accurate analysis is vital for prognosis.",
+    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=13032",
+    badgeUrl: "../assets/badges/badge_level2.png",
+    bonusInfo: [
+      { text: "Glioblastomas often present with necrosis and vascular proliferation.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
+      { text: "Your accurate analysis is vital for prognosis.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" }
+    ],
     platforms: [
       { x: 1195, y: 120, width: 150, height: 20, id: "q4" }, //q4
       { x: 1095, y: 450, width: 150, height: 20, id: "q7" }, //
@@ -119,8 +127,12 @@ export const LEVELS = {
     questionData: level3Questions,
     questionCount: 7,
     hint: "Routine screening revealed an abnormal growth in the colonic mucosa. Focus on cellular atypia and glandular formation.",
-    bonusInfo:
-      "Colonic adenocarcinomas typically disrupt the normal glandular architecture. Excellent observation of the invasive patterns.",
+    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=25913",
+    badgeUrl: "../assets/badges/badge_level2.png",
+    bonusInfo: [
+      { text: "Colonic adenocarcinomas typically disrupt the normal glandular architecture.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
+      { text: "Excellent observation of the invasive patterns.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" }
+    ],
     platforms: [
       { x: 80, y: 120, width: 150, height: 20, id: "q1" }, //q1
       { x: 280, y: 230, width: 150, height: 20, id: "q2" }, //q2
@@ -179,8 +191,12 @@ export const LEVELS = {
     questionData: level4Questions,
     questionCount: 7,
     hint: "A 60-year-old male with a history of smoking presents with a lung mass. Evaluate the presence of keratin pearls.",
-    bonusInfo:
-      "Squamous cell carcinomas of the lung are strongly associated with smoking and exhibit distinctive keratinization. Good job!",
+    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=39091",
+    badgeUrl: "../assets/badges/badge_level2.png",
+    bonusInfo: [
+      { text: "Squamous cell carcinomas of the lung are strongly associated with smoking and exhibit distinctive keratinization.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
+      { text: "Good job!", image: "" }
+    ],
     platforms: [
       {
         x: 150,
@@ -277,8 +293,12 @@ export const LEVELS = {
     questionData: level5Questions,
     questionCount: 6,
     hint: "A 34-year-old man presented with a painless mass of 3 cm in the leg.",
-    bonusInfo:
-      "Metastatic tumors require careful IHC staining to determine the primary site. Your diagnostic reasoning is spot on!",
+    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23278",
+    badgeUrl: "../assets/badges/badge_level2.png",
+    bonusInfo: [
+      { text: "Metastatic tumors require careful IHC staining to determine the primary site.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
+      { text: "Your diagnostic reasoning is spot on!", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" }
+    ],
     platforms: [
       { x: 1195, y: 120, width: 150, height: 20, id: "q4" }, //q4
       { x: 1095, y: 450, width: 150, height: 20, id: "q7" }, //

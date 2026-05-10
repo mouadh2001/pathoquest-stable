@@ -56,6 +56,18 @@ export class ModalUI {
     const container = document.getElementById("modal-answers");
     container.innerHTML = "";
     
+    const actionBtn = document.createElement("button");
+    actionBtn.innerText = buttonText;
+    actionBtn.className = "answer-btn";
+    actionBtn.style.background = "#3b82f6";
+    actionBtn.style.color = "#ffffff";
+    actionBtn.style.marginTop = "20px";
+    
+    actionBtn.onclick = () => {
+      this.closeModal();
+      if (onConfirm) onConfirm();
+    };
+
     if (bonusMessage) {
       const bonusBtn = document.createElement("button");
       bonusBtn.innerText = "Bonus Info";
@@ -66,31 +78,68 @@ export class ModalUI {
       bonusBtn.style.marginRight = "10px";
       
       bonusBtn.onclick = () => {
-        feedback.innerText = summaryMessage ? summaryMessage + "\n\n" + bonusMessage : bonusMessage;
-        bonusBtn.style.display = "none";
+        if (Array.isArray(bonusMessage)) {
+            // Paginated bonus info
+            actionBtn.style.display = "none"; // Hide standard action button during pages
+            let currentPage = 0;
+            
+            const renderPage = () => {
+                const page = bonusMessage[currentPage];
+                feedback.innerText = page.text;
+                
+                feedbackImagesContainer.innerHTML = "";
+                if (page.image) {
+                    const img = document.createElement("img");
+                    img.src = page.image;
+                    img.style.display = "block";
+                    img.style.maxWidth = "200px";
+                    img.style.margin = "10px auto";
+                    feedbackImagesContainer.appendChild(img);
+                }
+                
+                container.innerHTML = "";
+                
+                if (currentPage > 0) {
+                    const prevBtn = document.createElement("button");
+                    prevBtn.innerText = "Previous";
+                    prevBtn.className = "answer-btn";
+                    prevBtn.onclick = () => {
+                        currentPage--;
+                        renderPage();
+                    };
+                    container.appendChild(prevBtn);
+                }
+                
+                if (currentPage < bonusMessage.length - 1) {
+                    const nextBtn = document.createElement("button");
+                    nextBtn.innerText = "Next";
+                    nextBtn.className = "answer-btn";
+                    nextBtn.onclick = () => {
+                        currentPage++;
+                        renderPage();
+                    };
+                    container.appendChild(nextBtn);
+                } else {
+                    // On the last page, show the primary action button
+                    actionBtn.style.display = "inline-block";
+                    container.appendChild(actionBtn);
+                }
+            };
+            
+            renderPage();
+        } else {
+            feedback.innerText = summaryMessage ? summaryMessage + "\n\n" + bonusMessage : bonusMessage;
+            bonusBtn.style.display = "none";
+        }
       };
       container.appendChild(bonusBtn);
     }
-
-    const actionBtn = document.createElement("button");
-    actionBtn.innerText = buttonText;
-    actionBtn.className = "answer-btn";
-    actionBtn.style.background = "#3b82f6";
-    actionBtn.style.color = "#ffffff";
-    actionBtn.style.marginTop = "20px";
-    
-    actionBtn.onclick = () => {
-      this.closeModal();
-      // Clear feedback text explicitly
-      document.getElementById("modal-feedback").innerText = "";
-      if (onConfirm) onConfirm();
-    };
     
     container.appendChild(actionBtn);
     document.getElementById("modal").style.display = "flex";
   }
 
-  openTumorMenu(scope) {
+  openTumorMenu(scope, customLink) {
     // Prevent spamming if a window is already open or in cooldown
     if (this.tumorCooldown || this.scene.popupOpen) return;
 
@@ -102,10 +151,11 @@ export class ModalUI {
       const height = 600;
       const left = window.screen.width / 2 - width / 2;
       const top = window.screen.height / 2 - height / 2;
+      const urlToOpen = customLink || "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23191";
 
       // 1. Open the Link immediately
       this.tumorWindow = window.open(
-        "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23191",
+        urlToOpen,
         "TumorInfo",
         `width=${width},height=${height},top=${top},left=${left},scrollbars=yes`,
       );
@@ -246,7 +296,6 @@ export class ModalUI {
             closeBtn.style.color = "#ffffff";
             closeBtn.style.marginTop = "20px";
             closeBtn.onclick = () => {
-              feedbackImagesContainer.innerHTML = ""; // nothing to show
               this.selectedCorrect = null;
               // Emit first, let handleQCMSuccess manage modal state
               this.scene.events.emit("qcm_success", id);
@@ -276,7 +325,6 @@ export class ModalUI {
           closeBtn.style.marginTop = "20px";
           closeBtn.onclick = () => {
             this.closeModal();
-            feedbackImagesContainer.innerHTML = ""; // nothing to show
             this.scene.events.emit("qcm_wrong", id);
           };
           container.appendChild(closeBtn);
@@ -292,6 +340,22 @@ export class ModalUI {
     const modal = document.getElementById("modal");
     if (modal) {
       modal.style.display = "none";
+
+      // Clean up all content to prevent bleed-over into the next modal
+      const questionText = document.getElementById("modal-question");
+      if (questionText) questionText.innerText = "";
+
+      const feedback = document.getElementById("modal-feedback");
+      if (feedback) {
+        feedback.innerText = "";
+        feedback.className = "";
+      }
+
+      const feedbackImagesContainer = document.getElementById("feedback-images");
+      if (feedbackImagesContainer) feedbackImagesContainer.innerHTML = "";
+
+      const container = document.getElementById("modal-answers");
+      if (container) container.innerHTML = "";
     }
     this.scene.physics.resume();
     this.scene.popupOpen = false;

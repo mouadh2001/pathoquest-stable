@@ -146,7 +146,8 @@ export default class GameScene extends Phaser.Scene {
       .on("pointerdown", () => {
         this.hasCheckedLoupe = true;
         this.checkFirstScopeUnlock();
-        this.modal.openTumorMenu(null);
+        const link = this.levelConfig.loupeLink || "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23191";
+        this.modal.openTumorMenu(null, link);
       });
 
     // Back to Levels button
@@ -449,7 +450,7 @@ export default class GameScene extends Phaser.Scene {
       if (earnedBadge) {
          title = "🏆 Level Complete & Badge Earned!";
          summaryMessage = `Amazing! You answered ${firstTryCount} out of ${questionCount} questions correctly on your first try and earned a Medical Badge!`;
-         badgeUrl = "../assets/items/badge_level1.png";
+         badgeUrl = this.levelConfig.badgeUrl || "../assets/items/badge_level1.png";
       }
 
       if (nextLevelKey) {
