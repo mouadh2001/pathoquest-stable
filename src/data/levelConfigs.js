@@ -270,13 +270,13 @@ export const LEVELS = {
     ],
   },
   level5: {
-    key: "level5  ",
+    key: "level5",
     title: "Level 5",
     backgroundKey: "bg",
     spawn: { x: 100, y: 100 },
     questionData: level5Questions,
-    questionCount: 7,
-    hint: "Complex case involving multiple metastatic sites. Identify the primary tumor origin based on immunohistochemistry patterns.",
+    questionCount: 6,
+    hint: "A 34-year-old man presented with a painless mass of 3 cm in the leg.",
     bonusInfo:
       "Metastatic tumors require careful IHC staining to determine the primary site. Your diagnostic reasoning is spot on!",
     platforms: [
