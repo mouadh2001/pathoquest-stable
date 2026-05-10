@@ -1,3 +1,5 @@
+import { LEVELS } from "../data/levelConfigs.js";
+
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super({ key: "PreloaderScene" });
@@ -84,7 +86,22 @@ export default class PreloaderScene extends Phaser.Scene {
     });
 
     // ✅ When complete
-    this.load.on("complete", () => {
+    this.load.on("complete", async () => {
+      loadingText.setText("Fetching game data...");
+      try {
+        const response = await fetch("http://localhost:5000/api/gameData/public");
+        if (response.ok) {
+          const data = await response.json();
+          window.DYNAMIC_LEVELS = data.LEVELS;
+          console.log("✅ Loaded dynamic game data from Admin API.");
+        } else {
+          throw new Error("API returned " + response.status);
+        }
+      } catch (err) {
+        console.warn("⚠️ Failed to load game data from API. Falling back to static levels.", err);
+        window.DYNAMIC_LEVELS = LEVELS;
+      }
+      
       loadingText.setText("Ready!");
 
       // Smooth transition

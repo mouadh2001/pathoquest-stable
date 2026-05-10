@@ -69,7 +69,8 @@ export default class GameScene extends Phaser.Scene {
       this.levelKey,
     );
 
-    this.levelConfig = LEVELS[this.levelKey] || LEVELS.level1;
+    const activeLevels = window.DYNAMIC_LEVELS || LEVELS;
+    this.levelConfig = activeLevels[this.levelKey] || activeLevels.level1;
     this.levelData = this.levelConfig.questionData;
     
     // Generate sequence based on questionCount parameter
@@ -553,14 +554,16 @@ export default class GameScene extends Phaser.Scene {
   }
 
   getNextLevelKey(levelKey) {
-    const levels = Object.values(LEVELS);
+    const activeLevels = window.DYNAMIC_LEVELS || LEVELS;
+    const levels = Object.values(activeLevels);
     const index = levels.findIndex((level) => level.key === levelKey);
     if (index === -1 || index >= levels.length - 1) return null;
     return levels[index + 1].key;
   }
 
   isLevelUnlocked(levelKey) {
-    const levels = Object.values(LEVELS);
+    const activeLevels = window.DYNAMIC_LEVELS || LEVELS;
+    const levels = Object.values(activeLevels);
     const index = levels.findIndex((level) => level.key === levelKey);
     if (index <= 0) return index === 0;
     const previousLevelKey = levels[index - 1].key;
