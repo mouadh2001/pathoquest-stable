@@ -89,7 +89,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.on("complete", async () => {
       loadingText.setText("Fetching game data...");
       try {
-        const response = await fetch("http://localhost:5000/api/gameData/public");
+        const response = await fetch("https://pathquestadmin.onrender.com/api/gameData/public");
         if (response.ok) {
           const data = await response.json();
           window.DYNAMIC_LEVELS = data.LEVELS;
