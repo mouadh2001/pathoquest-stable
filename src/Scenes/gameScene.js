@@ -169,6 +169,7 @@ export default class GameScene extends Phaser.Scene {
         this.scene.start("LabScene");
       });
 
+
     // 1. Background
     const bgKey = this.levelConfig.backgroundKey || "bg";
     let bg = this.add.image(0, 0, bgKey).setOrigin(0, 0);
@@ -318,6 +319,8 @@ export default class GameScene extends Phaser.Scene {
     this.modal = new ModalUI(this);
     this.modal.createHTMLModal();
 
+    this.earnedBadges = null; // Will be set when level completes
+
     // 7. Audio
     this.bgMusic = this.sound.add("bgMusic", { loop: true, volume: 0.3 });
     this.bgMusic.play();
@@ -434,49 +437,64 @@ export default class GameScene extends Phaser.Scene {
       this.saveCompletedLevel(this.levelKey);
       console.log("🎉 Level Complete!");
 
+      const firstTryCount = this.StatsService.metrics.firstTrySuccessCount || 0;
+      const questionCount = this.levelConfig.questionCount || 5;
+
+      const badges = this.getLevelCompletionBadges(
+        this.levelKey,
+        firstTryCount,
+        questionCount,
+        this.levelConfig
+      );
+
+      // Store badges for later access inside reward flow
+      this.earnedBadges = badges;
+
       console.log("🎉 Pushing stats for this level...");
-      await this.StatsService.pushStats();
+      await this.StatsService.pushStats(badges);
 
       const nextLevelKey = this.getNextLevelKey(this.levelKey);
-      const bonusText = this.levelConfig.bonusInfo || "Great job completing this level!";
+      const completionMessage = "Level complete! Tap Bonus for extra info or Reward to see your earned badges.";
 
-      const firstTryCount = this.StatsService.metrics.firstTrySuccessCount || 0;
-      const questionCount = this.levelConfig.questionCount || 7;
-      const earnedBadge = firstTryCount >= (questionCount / 2);
-      
-      let summaryMessage = "";
-      let title = "🎉 Level Complete!";
-      let badgeUrl = null;
-      
-      if (earnedBadge) {
-         title = "🏆 Level Complete & Badge Earned!";
-         summaryMessage = `Amazing! You answered ${firstTryCount} out of ${questionCount} questions correctly on your first try and earned a Medical Badge!`;
-         badgeUrl = this.levelConfig.badgeUrl || "../assets/items/badge_level1.png";
-      }
+      const continueToNextLevel = () => {
+        if (nextLevelKey) {
+          this.scene.restart({ levelKey: nextLevelKey });
+        } else {
+          this.scene.start("LabScene");
+        }
+      };
 
-      if (nextLevelKey) {
+      const hasBonusData = Array.isArray(this.levelConfig.bonusInfo) && this.levelConfig.bonusInfo.length > 0;
+      const showCompletionModal = () => {
         this.modal.showLevelCompleteMessage(
-          title,
-          summaryMessage,
-          bonusText,
+          "🎉 Level Complete!",
+          completionMessage,
           "Next Level",
+          continueToNextLevel,
           () => {
-            this.scene.restart({ levelKey: nextLevelKey });
+            showRewardModal();
           },
-          badgeUrl
+          hasBonusData ? () => {
+            showBonusModal();
+          } : null
         );
-      } else {
-        this.modal.showLevelCompleteMessage(
-          earnedBadge ? "🏆 All levels complete & Badge Earned!" : "🎉 All levels complete! Well done.",
-          summaryMessage,
-          bonusText,
-          "Finish",
-          () => {
-            this.scene.start("LabScene");
-          },
-          badgeUrl
+      };
+
+      const showRewardModal = () => {
+        this.modal.showRewardBadges(
+          badges.levelBadge,
+          badges.rankingBadge,
+          firstTryCount,
+          questionCount,
+          showCompletionModal
         );
-      }
+      };
+
+      const showBonusModal = () => {
+        this.modal.showBonusModal(this.levelConfig.bonusInfo, showCompletionModal);
+      };
+
+      showCompletionModal();
     }
 
     const scope = this.currentScope;
@@ -568,6 +586,73 @@ export default class GameScene extends Phaser.Scene {
     if (index <= 0) return index === 0;
     const previousLevelKey = levels[index - 1].key;
     return this.getCompletedLevels().includes(previousLevelKey);
+  }
+
+  getRankingBadge(firstTryCount, totalQuestions, levelConfig = {}) {
+    let rankType;
+
+    if (firstTryCount === totalQuestions) {
+      rankType = "diamond";
+    } else if (firstTryCount === 1) {
+      rankType = "bronze";
+    } else if (firstTryCount < Math.ceil(totalQuestions / 2)) {
+      rankType = "silver";
+    } else {
+      rankType = "gold";
+    }
+
+    const badgeData = levelConfig.badges?.ranking?.[rankType] || {};
+    return {
+      name: badgeData.name || `${rankType.charAt(0).toUpperCase() + rankType.slice(1)} Badge`,
+      description:
+        badgeData.description ||
+        `Earned the ${rankType} ranking badge for Level ${levelKey.replace("level", "")}.`,
+      image: badgeData.image || `../assets/badges/${rankType}_badge.png`,
+      type: "ranking",
+    };
+  }
+
+  getLevelBadge(levelKey, levelConfig = {}) {
+    const levelNumber = levelKey.replace("level", "");
+    const completionBadge = levelConfig.badges?.completion || {};
+    return {
+      name: completionBadge.name || `Level ${levelNumber} Completion Badge`,
+      description:
+        completionBadge.description || `You have successfully completed Level ${levelNumber}!`,
+      image: completionBadge.image || `../assets/badges/badge_level_${levelNumber}.png`,
+      type: "level",
+    };
+  }
+
+  getLevelCompletionBadges(levelKey, firstTryCount, totalQuestions, levelConfig = {}) {
+    return {
+      levelBadge: this.getLevelBadge(levelKey, levelConfig),
+      rankingBadge: this.getRankingBadge(firstTryCount, totalQuestions, levelConfig),
+      firstTryCount,
+      totalQuestions,
+    };
+  }
+
+  showRewards() {
+    // Show the current level's earned badges
+    if (this.earnedBadges) {
+      this.modal.showRewardBadges(
+        this.earnedBadges.levelBadge,
+        this.earnedBadges.rankingBadge,
+        this.earnedBadges.firstTryCount,
+        this.earnedBadges.totalQuestions,
+        () => {
+          this.modal.closeModal();
+          this.physics.resume();
+        }
+      );
+    } else {
+      this.modal.showInfoMessage(
+        "📋 No badges earned yet. Complete questions correctly on the first try to earn badges!",
+        true,
+        1500
+      );
+    }
   }
 }
 

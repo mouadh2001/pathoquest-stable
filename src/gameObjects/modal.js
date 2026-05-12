@@ -29,113 +29,138 @@ export class ModalUI {
     }
   }
 
-  showLevelCompleteMessage(title, summaryMessage, bonusMessage, buttonText, onConfirm, imageUrl = null) {
+  showLevelCompleteMessage(title, summaryMessage, buttonText, onConfirm, onReward = null, onBonus = null) {
     this.scene.popupOpen = true;
     this.scene.physics.pause();
     
     document.getElementById("modal-question").innerText = title;
     
-    // Use the feedback area for the detailed message
     const feedback = document.getElementById("modal-feedback");
     feedback.innerText = summaryMessage;
     feedback.className = "feedback-area";
-    feedback.style.color = "#166534"; // A positive color
-    
-    // Handle optional badge/image
+    feedback.style.color = "#166534";
+
     const feedbackImagesContainer = document.getElementById("feedback-images");
     feedbackImagesContainer.innerHTML = "";
-    if (imageUrl) {
-      const img = document.createElement("img");
-      img.src = imageUrl;
-      img.style.display = "block";
-      img.style.maxWidth = "150px";
-      img.style.margin = "10px auto";
-      feedbackImagesContainer.appendChild(img);
-    }
-    
+
     const container = document.getElementById("modal-answers");
     container.innerHTML = "";
-    
+
     const actionBtn = document.createElement("button");
     actionBtn.innerText = buttonText;
     actionBtn.className = "answer-btn";
     actionBtn.style.background = "#3b82f6";
     actionBtn.style.color = "#ffffff";
     actionBtn.style.marginTop = "20px";
-    
+
     actionBtn.onclick = () => {
       this.closeModal();
       if (onConfirm) onConfirm();
     };
 
-    if (bonusMessage) {
+    const buttonGroup = document.createElement("div");
+    buttonGroup.style.display = "flex";
+    buttonGroup.style.justifyContent = "center";
+    buttonGroup.style.flexWrap = "wrap";
+    buttonGroup.style.gap = "12px";
+    buttonGroup.style.marginTop = "20px";
+
+    if (onBonus) {
       const bonusBtn = document.createElement("button");
-      bonusBtn.innerText = "Bonus Info";
       bonusBtn.className = "answer-btn";
-      bonusBtn.style.background = "#8b5cf6";
-      bonusBtn.style.color = "#ffffff";
-      bonusBtn.style.marginTop = "20px";
-      bonusBtn.style.marginRight = "10px";
-      
+      bonusBtn.style.backgroundImage = "url('assets/background/bonus_btn.png')";
+      bonusBtn.style.backgroundSize = "100% 100%";
+      bonusBtn.style.minWidth = "140px";
+      bonusBtn.style.maxWidth = "140px";
+      bonusBtn.style.height = "60px";
       bonusBtn.onclick = () => {
-        if (Array.isArray(bonusMessage)) {
-            // Paginated bonus info
-            actionBtn.style.display = "none"; // Hide standard action button during pages
-            let currentPage = 0;
-            
-            const renderPage = () => {
-                const page = bonusMessage[currentPage];
-                feedback.innerText = page.text;
-                
-                feedbackImagesContainer.innerHTML = "";
-                if (page.image) {
-                    const img = document.createElement("img");
-                    img.src = page.image;
-                    img.style.display = "block";
-                    img.style.maxWidth = "200px";
-                    img.style.margin = "10px auto";
-                    feedbackImagesContainer.appendChild(img);
-                }
-                
-                container.innerHTML = "";
-                
-                if (currentPage > 0) {
-                    const prevBtn = document.createElement("button");
-                    prevBtn.innerText = "Previous";
-                    prevBtn.className = "answer-btn";
-                    prevBtn.onclick = () => {
-                        currentPage--;
-                        renderPage();
-                    };
-                    container.appendChild(prevBtn);
-                }
-                
-                if (currentPage < bonusMessage.length - 1) {
-                    const nextBtn = document.createElement("button");
-                    nextBtn.innerText = "Next";
-                    nextBtn.className = "answer-btn";
-                    nextBtn.onclick = () => {
-                        currentPage++;
-                        renderPage();
-                    };
-                    container.appendChild(nextBtn);
-                } else {
-                    // On the last page, show the primary action button
-                    actionBtn.style.display = "inline-block";
-                    container.appendChild(actionBtn);
-                }
-            };
-            
-            renderPage();
-        } else {
-            feedback.innerText = summaryMessage ? summaryMessage + "\n\n" + bonusMessage : bonusMessage;
-            bonusBtn.style.display = "none";
-        }
+        this.closeModal();
+        onBonus();
       };
-      container.appendChild(bonusBtn);
+      buttonGroup.appendChild(bonusBtn);
     }
-    
+
+    if (onReward) {
+      const rewardBtn = document.createElement("button");
+      rewardBtn.className = "answer-btn";
+      rewardBtn.innerText = "Reward";
+      rewardBtn.style.background = "#f59e0b";
+      rewardBtn.style.color = "#1f2937";
+      rewardBtn.style.minWidth = "140px";
+      rewardBtn.onclick = () => {
+        this.closeModal();
+        onReward();
+      };
+      buttonGroup.appendChild(rewardBtn);
+    }
+
+    container.appendChild(buttonGroup);
     container.appendChild(actionBtn);
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  showBonusModal(bonusInfo, onBack) {
+    this.scene.popupOpen = true;
+    this.scene.physics.pause();
+
+    document.getElementById("modal-question").innerText = "Bonus Info";
+
+    const feedback = document.getElementById("modal-feedback");
+    feedback.className = "feedback-area";
+    feedback.style.color = "#166534";
+    feedback.style.fontWeight = "bold";
+    const feedbackImagesContainer = document.getElementById("feedback-images");
+    feedbackImagesContainer.innerHTML = "";
+    feedbackImagesContainer.style.flexDirection = "column";
+    feedbackImagesContainer.style.alignItems = "center";
+    const container = document.getElementById("modal-answers");
+    container.innerHTML = "";
+
+    const items = Array.isArray(bonusInfo) ? bonusInfo.filter(Boolean) : bonusInfo ? [bonusInfo] : [];
+
+    if (items.length === 0) {
+      feedback.innerText = "No bonus data available for this level.";
+    } else {
+      feedback.innerText = items
+        .map((item) => item.text || "")
+        .filter(Boolean)
+        .join("\n\n");
+
+      items.forEach((item) => {
+        if (!item || !item.images || !Array.isArray(item.images)) return;
+        item.images.forEach((imgPath) => {
+          if (!imgPath) return;
+          const img = document.createElement("img");
+          img.src = imgPath;
+          img.style.display = "block";
+          img.style.width = "100%";
+          img.style.maxWidth = "720px";
+          img.style.maxHeight = "480px";
+          img.style.height = "auto";
+          img.style.margin = "14px auto";
+          img.style.borderRadius = "8px";
+          img.style.boxShadow = "0 0 10px rgba(0,0,0,0.15)";
+          img.onerror = () => {
+            console.warn(`Bonus image failed to load: ${imgPath}`);
+            img.style.display = "none";
+          };
+          feedbackImagesContainer.appendChild(img);
+        });
+      });
+    }
+
+    const continueBtn = document.createElement("button");
+    continueBtn.innerText = "Continue";
+    continueBtn.className = "answer-btn";
+    continueBtn.style.background = "#3b82f6";
+    continueBtn.style.color = "#ffffff";
+    continueBtn.style.marginTop = "20px";
+    continueBtn.onclick = () => {
+      this.closeModal();
+      if (onBack) onBack();
+    };
+    container.appendChild(continueBtn);
+
     document.getElementById("modal").style.display = "flex";
   }
 
@@ -352,7 +377,12 @@ export class ModalUI {
       }
 
       const feedbackImagesContainer = document.getElementById("feedback-images");
-      if (feedbackImagesContainer) feedbackImagesContainer.innerHTML = "";
+      if (feedbackImagesContainer) {
+        feedbackImagesContainer.innerHTML = "";
+        feedbackImagesContainer.style.flexDirection = "row";
+        feedbackImagesContainer.style.alignItems = "center";
+        feedbackImagesContainer.style.flexWrap = "wrap";
+      }
 
       const container = document.getElementById("modal-answers");
       if (container) container.innerHTML = "";
@@ -360,6 +390,63 @@ export class ModalUI {
     this.scene.physics.resume();
     this.scene.popupOpen = false;
     this.selectedCorrect = null;
+  }
+
+  showRewardBadges(levelBadge, rankingBadge, firstTryCount, totalQuestions, onConfirm) {
+    this.scene.popupOpen = true;
+    this.scene.physics.pause();
+
+    document.getElementById("modal-question").innerText = "🏆 BADGES EARNED! 🏆";
+
+    const feedback = document.getElementById("modal-feedback");
+    feedback.innerHTML = `
+      <strong style="color: #166534; font-size: 1.1em; display: block; margin-bottom: 15px;">
+        ${levelBadge.name}
+      </strong>
+      <strong style="color: #166534; font-size: 1.1em; display: block; margin-top: 15px;">
+        You answered correctly ${firstTryCount}/${totalQuestions} questions on the first try
+      </strong>
+      <strong style="color: #166534; font-size: 1.1em; display: block; margin-top: 10px;">
+        ${rankingBadge.name}
+      </strong>
+    `;
+    feedback.className = "feedback-area";
+    feedback.style.color = "#166534";
+
+    const feedbackImagesContainer = document.getElementById("feedback-images");
+    feedbackImagesContainer.innerHTML = "";
+
+    const badgeImages = [levelBadge.image, rankingBadge.image];
+    badgeImages.forEach((badgeUrl) => {
+      const img = document.createElement("img");
+      img.src = badgeUrl;
+      img.style.display = "block";
+      img.style.maxWidth = "180px";
+      img.style.margin = "10px auto";
+      img.onerror = () => {
+        console.warn(`Badge image failed to load: ${badgeUrl}`);
+        img.style.display = "none";
+      };
+      feedbackImagesContainer.appendChild(img);
+    });
+
+    const container = document.getElementById("modal-answers");
+    container.innerHTML = "";
+
+    const continueBtn = document.createElement("button");
+    continueBtn.innerText = "Continue";
+    continueBtn.className = "answer-btn";
+    continueBtn.style.background = "#3b82f6";
+    continueBtn.style.color = "#ffffff";
+    continueBtn.style.marginTop = "20px";
+
+    continueBtn.onclick = () => {
+      this.closeModal();
+      if (onConfirm) onConfirm();
+    };
+
+    container.appendChild(continueBtn);
+    document.getElementById("modal").style.display = "flex";
   }
 
   createHTMLModal() {
@@ -370,7 +457,7 @@ export class ModalUI {
     <div class="modal-content">
       <h2 id="modal-question"></h2>
       <div id="modal-feedback"></div>
-      <div id="feedback-images" style="display:flex; flex-wrap:no-wrap; justify-content:center;"></div>
+      <div id="feedback-images" style="display:flex; flex-wrap:wrap; justify-content:center;"></div>
       <div id="modal-answers"></div>
     </div>
   `;

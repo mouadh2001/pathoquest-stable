@@ -15,13 +15,36 @@ export const LEVELS = {
     hint: "A 42-year-old patient presented with a slowly enlarging, painless mass in the left thigh. \n\nThe mass had been present for 8 months. Examination revealed a deep-seated, soft, non-mobile swelling measuring 10 cm, located in the posterior compartment of the thigh. MRI showed a well-circumscribed, gelatinous-appearing mass.",
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=6025",
-    badgeUrl: "../assets/badges/badge_level_2.png",
+    badges: {
+      completion: {
+        image: "../assets/badges/level1_badges/badge_level_1.png",
+        description: "Level 1 completion badge earned for finishing the case.",
+      },
+      ranking: {
+        bronze: {
+          image: "../assets/badges/level1_badges/bronze_badge.png",
+          description: "Only one question answered correctly on first try in Level 1.",
+        },
+        silver: {
+          image: "../assets/badges/level1_badges/silver_badge.png",
+          description: "More than one, but below half of Level 1 questions answered correctly on first try.",
+        },
+        gold: {
+          image: "../assets/badges/level1_badges/golden_badge.png",
+          description: "More than half of Level 1 questions answered correctly on first try.",
+        },
+        diamond: {
+          image: "../assets/badges/level1_badges/dimond_badge.png",
+          description: "All Level 1 questions answered correctly on first try.",
+        },
+      },
+    },
     bonusInfo: [
       {
         text: "Recognizing cellular atypia early is crucial for diagnosing malignant lesions.",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+        images: ["../assets/bonusinfo/level1_imgs/bonus.png"],
       },
-      { text: "Well done on identifying the key features!", image: "" },
+      { text: "Well done on identifying the key features!", images: [] },
     ],
     platforms: [
       { x: 400, y: 100, width: 150, height: 20, id: "q1" },
@@ -76,15 +99,34 @@ export const LEVELS = {
     hint: "A 52-year-old patient presented with a painless subcutaneous mass on his right shoulder, which had been slowly growing for two years. Examination revealed a mobile, soft swelling, not adherent to any deeper tissues, measuring 4 cm.",
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=13032",
-    badgeUrl: "../assets/badges/badge_level_2.png",
+    badges: {
+      completion: {
+        image: "../assets/badges/level2_badges/badge_level_2.png",
+        description: "Level 2 completion badge earned for completing the case.",
+      },
+      ranking: {
+        bronze: {
+          image: "../assets/badges/level2_badges/bronze_badge.png",
+          description: "Only one question answered correctly on first try in Level 2.",
+        },
+        silver: {
+          image: "../assets/badges/level2_badges/silver_badge.png",
+          description: "More than one, but below half of Level 2 questions answered correctly on first try.",
+        },
+        gold: {
+          image: "../assets/badges/level2_badges/golden_badge.png",
+          description: "More than half of Level 2 questions answered correctly on first try.",
+        },
+        diamond: {
+          image: "../assets/badges/level2_badges/dimond_badge.png",
+          description: "All Level 2 questions answered correctly on first try.",
+        },
+      },
+    },
     bonusInfo: [
       {
         text: "Glioblastomas often present with necrosis and vascular proliferation.",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
-      },
-      {
-        text: "Your accurate analysis is vital for prognosis.",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+        images: ["../assets/bonusinfo/level2_imgs/bonus.png"],
       },
     ],
     platforms: [
@@ -140,15 +182,37 @@ export const LEVELS = {
     hint: "A 22-year-old male patient presents with a rapidly enlarging, painful mass on his left thigh. Imaging shows a destructive lesion of the femur with a large soft tissue component.",
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=25913",
-    badgeUrl: "../assets/badges/badge_level_2.png",
+    badges: {
+      completion: {
+        image: "../assets/badges/level3_badges/badge_level_2.png",
+        description: "Level 3 completion badge earned for finishing the case.",
+      },
+      ranking: {
+        bronze: {
+          image: "../assets/badges/level3_badges/bronze_badge.png",
+          description: "Only one question answered correctly on first try in Level 3.",
+        },
+        silver: {
+          image: "../assets/badges/level3_badges/silver_badge.png",
+          description: "More than one, but below half of Level 3 questions answered correctly on first try.",
+        },
+        gold: {
+          image: "../assets/badges/level3_badges/golden_badge.png",
+          description: "More than half of Level 3 questions answered correctly on first try.",
+        },
+        diamond: {
+          image: "../assets/badges/level3_badges/dimond_badge.png",
+          description: "All Level 3 questions answered correctly on first try.",
+        },
+      },
+    },
     bonusInfo: [
       {
         text: "Colonic adenocarcinomas typically disrupt the normal glandular architecture.",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
-      },
-      {
-        text: "Excellent observation of the invasive patterns.",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+        images: [
+          "../assets/bonusinfo/level3_imgs/bonus1.png",
+          "../assets/bonusinfo/level3_imgs/bonus2.png"
+        ],
       },
     ],
     platforms: [
@@ -163,7 +227,7 @@ export const LEVELS = {
     items: [
       { type: "scope", x: 120, y: 160, questionId: "q1" },
       { type: "scope", x: 320, y: 270, questionId: "q2" },
-      { type: "scope", x: 470, y: 380, questionId: "q3" },
+      { type: "scope", x: 500, y: 380, questionId: "q3" },
       { type: "scope", x: 890, y: 380, questionId: "q4" },
       { type: "scope", x: 990, y: 190, questionId: "q5" },
       { type: "scope", x: 690, y: 190, questionId: "q6" },
@@ -211,13 +275,35 @@ export const LEVELS = {
     hint: "A 43-year-old gentleman presented with a non-progressive swelling of 8 cm over the posterior aspect of the left arm for the past 2 months. There was no functional impairment of the arm. He also reported weight loss and loss of appetite.",
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23180",
-    badgeUrl: "../assets/badges/badge_level_2.png",
+    badges: {
+      completion: {
+        image: "../assets/badges/level4_badges/badge_level_4.png",
+        description: "Level 4 completion badge earned for finishing the case.",
+      },
+      ranking: {
+        bronze: {
+          image: "../assets/badges/level4_badges/bronze_badge.png",
+          description: "Only one question answered correctly on first try in Level 4.",
+        },
+        silver: {
+          image: "../assets/badges/level4_badges/silver_badge.png",
+          description: "More than one, but below half of Level 4 questions answered correctly on first try.",
+        },
+        gold: {
+          image: "../assets/badges/level4_badges/gold_badge.png",
+          description: "More than half of Level 4 questions answered correctly on first try.",
+        },
+        diamond: {
+          image: "../assets/badges/level4_badges/dimond_badge.png",
+          description: "All Level 4 questions answered correctly on first try.",
+        },
+      },
+    },
     bonusInfo: [
       {
         text: "Squamous cell carcinomas of the lung are strongly associated with smoking and exhibit distinctive keratinization.",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+        images: ["../assets/bonusinfo/level4_imgs/bonus1.png"],
       },
-      { text: "Good job!", image: "" },
     ],
     platforms: [
       {
@@ -317,15 +403,38 @@ export const LEVELS = {
     hint: "A 34-year-old man presented with a painless mass of 3 cm in the leg. Deep-seated angiosarcoma typically presents as a rapidly enlarging, painless soft tissue mass that may become tender due to internal hemorrhage or necrosis. Its highly vascular nature often leads to spontaneous bleeding, local swelling, or compressive symptoms depending on its anatomical location. Given its aggressive behavior, the tumor is characterized by rapid infiltrative growth and a high propensity for early systemic metastasis.",
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23278",
-    badgeUrl: "../assets/badges/badge_level_2.png",
+    badges: {
+      completion: {
+        image: "../assets/badges/level5_badges/badge_level_5.png",
+        description: "Level 5 completion badge earned for finishing the case.",
+      },
+      ranking: {
+        bronze: {
+          image: "../assets/badges/level5_badges/bronze_badge.png",
+          description: "Only one question answered correctly on first try in Level 5.",
+        },
+        silver: {
+          image: "../assets/badges/level5_badges/silver_badge.png",
+          description: "More than one, but below half of Level 5 questions answered correctly on first try.",
+        },
+        gold: {
+          image: "../assets/badges/level5_badges/gold_badge.png",
+          description: "More than half of Level 5 questions answered correctly on first try.",
+        },
+        diamond: {
+          image: "../assets/badges/level5_badges/dimond_badge.png",
+          description: "All Level 5 questions answered correctly on first try.",
+        },
+      },
+    },
     bonusInfo: [
       {
         text: "Metastatic tumors require careful IHC staining to determine the primary site.",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+        images: ["../assets/bonusinfo/level5_imgs/bonus1.png"],
       },
       {
         text: "Your diagnostic reasoning is spot on!",
-        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+        images: ["../assets/bonusinfo/level5_imgs/bonus2.png"],
       },
     ],
     platforms: [

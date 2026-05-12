@@ -111,7 +111,7 @@ export const level3Questions = {
     feedbacks: [
       {
         text: "True (part of the panel)! AE1/AE3 (pan-cytokeratin) is included in the initial screening panel to exclude carcinoma and other cytokeratin-positive tumors (e.g., synovial sarcoma, DSRCT).\n\nIn this tumor, AE1/AE3 is negative or only focally positive — which helps exclude carcinoma and narrows the diagnosis toward a non-epithelial small round cell tumor.\n\n➜ Conclusion: the negative AE1/AE3 is consistent with the diagnosis.",
-        imgs: ["../assets/tumeurs/level3/q4_rep_a.png"],
+        imgs: ["../assets/tumeurs/level3/q4_rep_a.jpeg"],
       },
       {
         text: "True! CD99 (MIC2) is a key marker in small round cell tumors. It shows strong, diffuse membranous staining in approximately 95% of cases of this entity.\n\nHowever, CD99 is not specific — it can be positive in lymphoblastic lymphoma, synovial sarcoma, and other small round cell tumors. Always correlate with the full panel.\n\n➜ Conclusion: strong diffuse membranous CD99 positivity is a key step toward the diagnosis.",
@@ -177,15 +177,15 @@ export const level3Questions = {
     feedbacks: [
       {
         text: "True! FISH for EWSR1 rearrangement is a key confirmatory test. It detects a break-apart signal at the EWSR1 locus on chromosome 22q12.\n\nApproximately 85-90% of Ewing sarcomas harbor EWSR1::FLI1 fusion; the remainder have EWSR1::ERG or other EWSR1 rearrangements.",
-        imgs: ["../assets/tumeurs/level3/q6_rep_a.png"],
+        imgs: [],
       },
       {
         text: "Oups! PAX3::FOXO1 (or PAX7::FOXO1) is the fusion associated with alveolar rhabdomyosarcoma, NOT Ewing sarcoma.\n\nThis fusion is detected by RT-PCR or NGS and is a critical diagnostic marker distinguishing alveolar rhabdomyosarcoma from other small round cell tumors.",
-        imgs: ["../assets/tumeurs/level3/q6_rep_b.png"],
+        imgs: [],
       },
       {
         text: "True! EWSR1::FLI1 fusion is detected in approximately 85-90% of Ewing sarcomas by RT-PCR or next-generation sequencing (NGS).\n\nThis fusion results from t(11;22)(q24;q12) translocation. Other EWSR1 fusions (e.g., EWSR1::ERG) account for the remaining ~10-15% of cases.",
-        imgs: ["../assets/tumeurs/level3/q6_rep_c.png"],
+        imgs: [],
       },
       {
         text: "Oups! BRAF V600E mutation is associated with melanoma, papillary thyroid carcinoma, and hairy cell leukemia — NOT Ewing sarcoma.\n\nBRAF testing would not be part of the Ewing sarcoma molecular workup. The correct targets are EWSR1 rearrangements.",
@@ -193,7 +193,7 @@ export const level3Questions = {
       },
       {
         text: "True! NKX2.2 is a highly sensitive and specific IHC marker for Ewing sarcoma (nuclear staining). It is a transcription factor downstream of the EWSR1::FLI1 fusion.\n\nNKX2.2 shows higher sensitivity and specificity for Ewing sarcoma than CD99 alone, and is very useful when molecular studies are not available.",
-        imgs: ["../assets/tumeurs/level3/q6_rep_e.png"],
+        imgs: [],
       },
     ],
   },
