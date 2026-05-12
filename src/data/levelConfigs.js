@@ -11,13 +11,17 @@ export const LEVELS = {
     backgroundKey: "bg",
     spawn: { x: 100, y: 500 },
     questionData: level1Questions,
-    questionCount: 7,
+    questionCount: 5,
     hint: "A 42-year-old patient presented with a slowly enlarging, painless mass in the left thigh. \n\nThe mass had been present for 8 months. Examination revealed a deep-seated, soft, non-mobile swelling measuring 10 cm, located in the posterior compartment of the thigh. MRI showed a well-circumscribed, gelatinous-appearing mass.",
-    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=6025",
-    badgeUrl: "../assets/badges/badge_level2.png",
+    loupeLink:
+      "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=6025",
+    badgeUrl: "../assets/badges/badge_level_2.png",
     bonusInfo: [
-      { text: "Recognizing cellular atypia early is crucial for diagnosing malignant lesions.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
-      { text: "Well done on identifying the key features!", image: "" }
+      {
+        text: "Recognizing cellular atypia early is crucial for diagnosing malignant lesions.",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
+      { text: "Well done on identifying the key features!", image: "" },
     ],
     platforms: [
       { x: 400, y: 100, width: 150, height: 20, id: "q1" },
@@ -68,13 +72,20 @@ export const LEVELS = {
     backgroundKey: "bg",
     spawn: { x: 100, y: 100 },
     questionData: level2Questions,
-    questionCount: 5,
-    hint: "A 58-year-old patient presented with a slowly growing, painless, deep-seated mass in the retroperitoneum. \n\nThe mass had been present for several years. Examination revealed visible increase in abdominal girth. \n\nCT scan revealed a mass measuring 12cm and showing low attenuation.",
-    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=13032",
-    badgeUrl: "../assets/badges/badge_level2.png",
+    questionCount: 7,
+    hint: "A 52-year-old patient presented with a painless subcutaneous mass on his right shoulder, which had been slowly growing for two years. Examination revealed a mobile, soft swelling, not adherent to any deeper tissues, measuring 4 cm.",
+    loupeLink:
+      "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=13032",
+    badgeUrl: "../assets/badges/badge_level_2.png",
     bonusInfo: [
-      { text: "Glioblastomas often present with necrosis and vascular proliferation.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
-      { text: "Your accurate analysis is vital for prognosis.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" }
+      {
+        text: "Glioblastomas often present with necrosis and vascular proliferation.",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
+      {
+        text: "Your accurate analysis is vital for prognosis.",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
     ],
     platforms: [
       { x: 1195, y: 120, width: 150, height: 20, id: "q4" }, //q4
@@ -125,13 +136,20 @@ export const LEVELS = {
     backgroundKey: "bg",
     spawn: { x: 70, y: 300 },
     questionData: level3Questions,
-    questionCount: 7,
-    hint: "Routine screening revealed an abnormal growth in the colonic mucosa. Focus on cellular atypia and glandular formation.",
-    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=25913",
-    badgeUrl: "../assets/badges/badge_level2.png",
+    questionCount: 6,
+    hint: "A 22-year-old male patient presents with a rapidly enlarging, painful mass on his left thigh. Imaging shows a destructive lesion of the femur with a large soft tissue component.",
+    loupeLink:
+      "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=25913",
+    badgeUrl: "../assets/badges/badge_level_2.png",
     bonusInfo: [
-      { text: "Colonic adenocarcinomas typically disrupt the normal glandular architecture.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
-      { text: "Excellent observation of the invasive patterns.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" }
+      {
+        text: "Colonic adenocarcinomas typically disrupt the normal glandular architecture.",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
+      {
+        text: "Excellent observation of the invasive patterns.",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
     ],
     platforms: [
       { x: 80, y: 120, width: 150, height: 20, id: "q1" }, //q1
@@ -189,13 +207,17 @@ export const LEVELS = {
     isDeadlyFloor: true,
     spawn: { x: 50, y: 100 },
     questionData: level4Questions,
-    questionCount: 7,
-    hint: "A 60-year-old male with a history of smoking presents with a lung mass. Evaluate the presence of keratin pearls.",
-    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=39091",
-    badgeUrl: "../assets/badges/badge_level2.png",
+    questionCount: 6,
+    hint: "A 43-year-old gentleman presented with a non-progressive swelling of 8 cm over the posterior aspect of the left arm for the past 2 months. There was no functional impairment of the arm. He also reported weight loss and loss of appetite.",
+    loupeLink:
+      "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23180",
+    badgeUrl: "../assets/badges/badge_level_2.png",
     bonusInfo: [
-      { text: "Squamous cell carcinomas of the lung are strongly associated with smoking and exhibit distinctive keratinization.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
-      { text: "Good job!", image: "" }
+      {
+        text: "Squamous cell carcinomas of the lung are strongly associated with smoking and exhibit distinctive keratinization.",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
+      { text: "Good job!", image: "" },
     ],
     platforms: [
       {
@@ -292,12 +314,19 @@ export const LEVELS = {
     spawn: { x: 100, y: 100 },
     questionData: level5Questions,
     questionCount: 6,
-    hint: "A 34-year-old man presented with a painless mass of 3 cm in the leg.",
-    loupeLink: "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23278",
-    badgeUrl: "../assets/badges/badge_level2.png",
+    hint: "A 34-year-old man presented with a painless mass of 3 cm in the leg. Deep-seated angiosarcoma typically presents as a rapidly enlarging, painless soft tissue mass that may become tender due to internal hemorrhage or necrosis. Its highly vascular nature often leads to spontaneous bleeding, local swelling, or compressive symptoms depending on its anatomical location. Given its aggressive behavior, the tumor is characterized by rapid infiltrative growth and a high propensity for early systemic metastasis.",
+    loupeLink:
+      "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23278",
+    badgeUrl: "../assets/badges/badge_level_2.png",
     bonusInfo: [
-      { text: "Metastatic tumors require careful IHC staining to determine the primary site.", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" },
-      { text: "Your diagnostic reasoning is spot on!", image: "../assets/bonusinfo/level2_imgs/bonus.jpeg" }
+      {
+        text: "Metastatic tumors require careful IHC staining to determine the primary site.",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
+      {
+        text: "Your diagnostic reasoning is spot on!",
+        image: "../assets/bonusinfo/level2_imgs/bonus.png",
+      },
     ],
     platforms: [
       { x: 1195, y: 120, width: 150, height: 20, id: "q4" }, //q4
