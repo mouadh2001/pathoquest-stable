@@ -27,7 +27,6 @@ export class StatsService {
   addCorrectSelection() {}
   addIncorrectSelection() {}
   addLevelAttempt() {}
-  addScore() {}
 
   startQuestion(id) {
     if (!this.questionStats[id]) {

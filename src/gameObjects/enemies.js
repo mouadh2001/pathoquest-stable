@@ -132,10 +132,6 @@ export class EnemyManager {
 
       // Play a sound if you have one
       // this.scene.sound.play("stompSfx");
-      this.scene.StatsService.addScore();
-      this.scene.scoreText.setText(
-        "| Score: " + this.scene.StatsService.getScore(),
-      );
 
       // Remove the enemy
       enemy.destroy();

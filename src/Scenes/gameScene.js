@@ -108,8 +108,9 @@ export default class GameScene extends Phaser.Scene {
       })
       .setScrollFactor(0)
       .setDepth(2000);
-    this.scoreText = this.add
-      .text(600, 20, "| Score: " + this.StatsService.getScore(), {
+
+    this.timerText = this.add
+      .text(900, 20, "Time: 00:00", {
         fontSize: "22px",
         fill: "#ffffff",
         fontStyle: "bold",
@@ -329,6 +330,15 @@ export default class GameScene extends Phaser.Scene {
   update(time, delta) {
     if (this.popupOpen) return;
 
+    const elapsedSeconds = Math.floor((Date.now() - this.StatsService.gameStartTime) / 1000);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    if (this.timerText) {
+      this.timerText.setText(
+        `Time: ${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`,
+      );
+    }
+
     // Inside your update() function
     const activeCursors = {
       left: { isDown: this.cursors.left.isDown || this.touchInput.left },
@@ -407,9 +417,6 @@ export default class GameScene extends Phaser.Scene {
     this.modal.closeModal();
 
     this.StatsService.addCorrect(id);
-    if (this.scoreText) {
-      this.scoreText.setText("| Score: " + this.StatsService.getScore());
-    }
     // Score update
     this.correctcount += 20;
     this.progressBar.width = this.correctcount;
@@ -454,7 +461,9 @@ export default class GameScene extends Phaser.Scene {
       await this.StatsService.pushStats(badges);
 
       const nextLevelKey = this.getNextLevelKey(this.levelKey);
-      const completionMessage = "Level complete! Tap Bonus for extra info or Reward to see your earned badges.";
+      const levelScore = this.StatsService.getScore();
+      const timeSpent = Number(this.StatsService.timeSpent || ((Date.now() - this.StatsService.gameStartTime) / 1000).toFixed(1));
+      const completionMessage = `Level complete! \n\nYour score: ${levelScore}.     Time spent: ${timeSpent.toFixed(1)}s. \n\nTap Bonus for extra info or Reward to see your earned badges.`;
 
       const continueToNextLevel = () => {
         if (nextLevelKey) {
@@ -539,9 +548,6 @@ export default class GameScene extends Phaser.Scene {
     }
 
     this.StatsService.addIncorrect(id);
-    if (this.scoreText) {
-      this.scoreText.setText("| Score: " + this.StatsService.getScore());
-    }
   }
 
   resize(gameSize) {
