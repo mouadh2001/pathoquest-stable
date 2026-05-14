@@ -596,12 +596,15 @@ export default class GameScene extends Phaser.Scene {
 
   getRankingBadge(levelKey, firstTryCount, totalQuestions, levelConfig = {}) {
     let rankType;
+    const correctFirstTry = Math.max(0, Math.min(Number(firstTryCount) || 0, Number(totalQuestions) || 0));
+    const totalQuestionCount = Number(totalQuestions) || 0;
+    const halfThreshold = totalQuestionCount / 2;
 
-    if (firstTryCount === totalQuestions) {
+    if (correctFirstTry === totalQuestionCount) {
       rankType = "diamond";
-    } else if (firstTryCount === 1) {
+    } else if (correctFirstTry <= 1) {
       rankType = "bronze";
-    } else if (firstTryCount < Math.ceil(totalQuestions / 2)) {
+    } else if (correctFirstTry > 1 && correctFirstTry < halfThreshold) {
       rankType = "silver";
     } else {
       rankType = "gold";

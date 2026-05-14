@@ -24,7 +24,7 @@ export const LEVELS = {
         bronze: {
           image: "../assets/badges/level1_badges/bronze_badge.png",
           description:
-            "Only one question answered correctly on first try in Level 1.",
+            "One or fewer questions answered correctly on first try in Level 1.",
         },
         silver: {
           image: "../assets/badges/level1_badges/silver_badge.png",
@@ -111,7 +111,7 @@ export const LEVELS = {
         bronze: {
           image: "../assets/badges/level2_badges/bronze_badge.png",
           description:
-            "Only one question answered correctly on first try in Level 2.",
+            "One or fewer questions answered correctly on first try in Level 2.",
         },
         silver: {
           image: "../assets/badges/level2_badges/silver_badge.png",
@@ -197,7 +197,7 @@ export const LEVELS = {
         bronze: {
           image: "../assets/badges/level3_badges/bronze_badge.png",
           description:
-            "Only one question answered correctly on first try in Level 3.",
+            "One or fewer questions answered correctly on first try in Level 3.",
         },
         silver: {
           image: "../assets/badges/level3_badges/silver_badge.png",
@@ -293,7 +293,7 @@ export const LEVELS = {
         bronze: {
           image: "../assets/badges/level4_badges/bronze_badge.png",
           description:
-            "Only one question answered correctly on first try in Level 4.",
+            "One or fewer questions answered correctly on first try in Level 4.",
         },
         silver: {
           image: "../assets/badges/level4_badges/silver_badge.png",
@@ -425,7 +425,7 @@ export const LEVELS = {
         bronze: {
           image: "../assets/badges/level5_badges/bronze_badge.png",
           description:
-            "Only one question answered correctly on first try in Level 5.",
+            "One or fewer questions answered correctly on first try in Level 5.",
         },
         silver: {
           image: "../assets/badges/level5_badges/silver_badge.png",
