@@ -594,7 +594,7 @@ export default class GameScene extends Phaser.Scene {
     return this.getCompletedLevels().includes(previousLevelKey);
   }
 
-  getRankingBadge(firstTryCount, totalQuestions, levelConfig = {}) {
+  getRankingBadge(levelKey, firstTryCount, totalQuestions, levelConfig = {}) {
     let rankType;
 
     if (firstTryCount === totalQuestions) {
@@ -609,6 +609,7 @@ export default class GameScene extends Phaser.Scene {
 
     const badgeData = levelConfig.badges?.ranking?.[rankType] || {};
     return {
+      rankType,
       name: badgeData.name || `${rankType.charAt(0).toUpperCase() + rankType.slice(1)} Badge`,
       description:
         badgeData.description ||
@@ -633,7 +634,7 @@ export default class GameScene extends Phaser.Scene {
   getLevelCompletionBadges(levelKey, firstTryCount, totalQuestions, levelConfig = {}) {
     return {
       levelBadge: this.getLevelBadge(levelKey, levelConfig),
-      rankingBadge: this.getRankingBadge(firstTryCount, totalQuestions, levelConfig),
+      rankingBadge: this.getRankingBadge(levelKey, firstTryCount, totalQuestions, levelConfig),
       firstTryCount,
       totalQuestions,
     };
