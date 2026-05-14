@@ -23,15 +23,18 @@ export const LEVELS = {
       ranking: {
         bronze: {
           image: "../assets/badges/level1_badges/bronze_badge.png",
-          description: "Only one question answered correctly on first try in Level 1.",
+          description:
+            "Only one question answered correctly on first try in Level 1.",
         },
         silver: {
           image: "../assets/badges/level1_badges/silver_badge.png",
-          description: "More than one, but below half of Level 1 questions answered correctly on first try.",
+          description:
+            "More than one, but below half of Level 1 questions answered correctly on first try.",
         },
         gold: {
           image: "../assets/badges/level1_badges/golden_badge.png",
-          description: "More than half of Level 1 questions answered correctly on first try.",
+          description:
+            "More than half of Level 1 questions answered correctly on first try.",
         },
         diamond: {
           image: "../assets/badges/level1_badges/dimond_badge.png",
@@ -107,15 +110,18 @@ export const LEVELS = {
       ranking: {
         bronze: {
           image: "../assets/badges/level2_badges/bronze_badge.png",
-          description: "Only one question answered correctly on first try in Level 2.",
+          description:
+            "Only one question answered correctly on first try in Level 2.",
         },
         silver: {
           image: "../assets/badges/level2_badges/silver_badge.png",
-          description: "More than one, but below half of Level 2 questions answered correctly on first try.",
+          description:
+            "More than one, but below half of Level 2 questions answered correctly on first try.",
         },
         gold: {
           image: "../assets/badges/level2_badges/golden_badge.png",
-          description: "More than half of Level 2 questions answered correctly on first try.",
+          description:
+            "More than half of Level 2 questions answered correctly on first try.",
         },
         diamond: {
           image: "../assets/badges/level2_badges/dimond_badge.png",
@@ -190,15 +196,18 @@ export const LEVELS = {
       ranking: {
         bronze: {
           image: "../assets/badges/level3_badges/bronze_badge.png",
-          description: "Only one question answered correctly on first try in Level 3.",
+          description:
+            "Only one question answered correctly on first try in Level 3.",
         },
         silver: {
           image: "../assets/badges/level3_badges/silver_badge.png",
-          description: "More than one, but below half of Level 3 questions answered correctly on first try.",
+          description:
+            "More than one, but below half of Level 3 questions answered correctly on first try.",
         },
         gold: {
           image: "../assets/badges/level3_badges/golden_badge.png",
-          description: "More than half of Level 3 questions answered correctly on first try.",
+          description:
+            "More than half of Level 3 questions answered correctly on first try.",
         },
         diamond: {
           image: "../assets/badges/level3_badges/dimond_badge.png",
@@ -211,7 +220,7 @@ export const LEVELS = {
         text: "Colonic adenocarcinomas typically disrupt the normal glandular architecture.",
         images: [
           "../assets/bonusinfo/level3_imgs/bonus1.png",
-          "../assets/bonusinfo/level3_imgs/bonus2.png"
+          "../assets/bonusinfo/level3_imgs/bonus2.png",
         ],
       },
     ],
@@ -283,15 +292,18 @@ export const LEVELS = {
       ranking: {
         bronze: {
           image: "../assets/badges/level4_badges/bronze_badge.png",
-          description: "Only one question answered correctly on first try in Level 4.",
+          description:
+            "Only one question answered correctly on first try in Level 4.",
         },
         silver: {
           image: "../assets/badges/level4_badges/silver_badge.png",
-          description: "More than one, but below half of Level 4 questions answered correctly on first try.",
+          description:
+            "More than one, but below half of Level 4 questions answered correctly on first try.",
         },
         gold: {
           image: "../assets/badges/level4_badges/gold_badge.png",
-          description: "More than half of Level 4 questions answered correctly on first try.",
+          description:
+            "More than half of Level 4 questions answered correctly on first try.",
         },
         diamond: {
           image: "../assets/badges/level4_badges/dimond_badge.png",
@@ -397,6 +409,7 @@ export const LEVELS = {
     key: "level5",
     title: "Level 5",
     backgroundKey: "bg",
+    isDeadlyFloor: true,
     spawn: { x: 100, y: 100 },
     questionData: level5Questions,
     questionCount: 6,
@@ -411,15 +424,18 @@ export const LEVELS = {
       ranking: {
         bronze: {
           image: "../assets/badges/level5_badges/bronze_badge.png",
-          description: "Only one question answered correctly on first try in Level 5.",
+          description:
+            "Only one question answered correctly on first try in Level 5.",
         },
         silver: {
           image: "../assets/badges/level5_badges/silver_badge.png",
-          description: "More than one, but below half of Level 5 questions answered correctly on first try.",
+          description:
+            "More than one, but below half of Level 5 questions answered correctly on first try.",
         },
         gold: {
-          image: "../assets/badges/level5_badges/gold_badge.png",
-          description: "More than half of Level 5 questions answered correctly on first try.",
+          image: "../assets/badges/level5_badges/golden_badge.png",
+          description:
+            "More than half of Level 5 questions answered correctly on first try.",
         },
         diamond: {
           image: "../assets/badges/level5_badges/dimond_badge.png",
@@ -438,45 +454,90 @@ export const LEVELS = {
       },
     ],
     platforms: [
-      { x: 1195, y: 120, width: 150, height: 20, id: "q4" }, //q4
-      { x: 1095, y: 450, width: 150, height: 20, id: "q7" }, //
-      { x: 1095, y: 230, width: 150, height: 20, id: "q5" }, //
+      { x: 135, y: 120, width: 25, height: 100, id: "q1_cage" }, // q1
+      { x: 75, y: 60, width: 150, height: 20, id: "q1_cage" }, // q1
+      { x: 75, y: 160, width: 150, height: 20, id: "q1_cage", type: "destroy" }, // q1
+
+      { x: 75, y: 380, width: 150, height: 20, id: "q2", type: "destroy" }, // q2
+      { x: 135, y: 340, width: 25, height: 100, id: "q2_cage" }, // q2
+      { x: 75, y: 280, width: 150, height: 20, id: "q2_cage" }, // q2
+
+      { x: 1180, y: 120, width: 25, height: 100, id: "q3_cage" }, // q3
+      { x: 1245, y: 60, width: 150, height: 20, id: "q3_cage" }, // q3
       {
-        x: 470,
+        x: 1245,
+        y: 160,
+        width: 150,
+        height: 20,
+        id: "q3_cage",
+        type: "destroy",
+      }, // q3
+
+      { x: 1245, y: 380, width: 150, height: 20, id: "q4", type: "destroy" }, // q4
+      { x: 1180, y: 340, width: 25, height: 100, id: "q4_cage" }, // q4
+      { x: 1245, y: 280, width: 150, height: 20, id: "q4_cage" }, // q4
+
+      { x: 410, y: 220, width: 25, height: 100, id: "q5_cage" }, // q5
+      { x: 280, y: 220, width: 25, height: 100, id: "q5_cage" }, // q5
+      { x: 345, y: 160, width: 150, height: 20, id: "q5_cage" }, // q5
+      {
+        x: 345,
         y: 260,
+        width: 150,
+        height: 20,
+        id: "q5_cage",
+        type: "destroy",
+      }, // q5
+
+      { x: 1005, y: 340, width: 25, height: 100, id: "q6_cage" }, // q6
+      { x: 880, y: 340, width: 25, height: 100, id: "q6_cage" }, // q6
+      { x: 945, y: 280, width: 150, height: 20, id: "q6_cage" }, // q6
+      { x: 945, y: 380, width: 150, height: 20, id: "q6", type: "destroy" }, // q6
+
+      {
+        x: 150,
+        y: 60,
+        width: 200,
+        height: 20,
+        id: "elevator",
+        movement: {
+          type: "horizontal_elevator",
+          minX: 230,
+          maxX: 1080,
+          speed: 120,
+        },
+      },
+      {
+        x: 640,
+        y: 150,
         width: 200,
         height: 20,
         id: "elevator",
         movement: {
           type: "elevator",
-          minHeightAboveFloor: 120,
-          maxHeightAboveFloor: 400,
-          speed: 60,
+          minHeightAboveFloor: 100,
+          maxHeightAboveFloor: 450,
+          speed: 120,
         },
       },
-      { x: 925, y: 260, width: 150, height: 20, id: "q6" },
-      { x: 750, y: 400, width: 150, height: 20, id: "loupe" },
-      { x: 170, y: 250, width: 150, height: 20, id: "q2" }, //q2
-      { x: 850, y: 150, width: 300, height: 20, id: "q5" }, //
-      { x: 1195, y: 340, width: 150, height: 20, id: "none" }, //
-      { x: 120, y: 120, width: 250, height: 20, id: "q1" }, //q1
-      { x: 120, y: 400, width: 250, height: 20, id: "q3" }, //q3
-      { x: 1010, y: 300, width: 20, height: 320, id: "block" },
     ],
     items: [
-      { type: "scope", x: 150, y: 160, questionId: "q1" },
-      { type: "scope", x: 150, y: 290, questionId: "q2" },
-      { type: "scope", x: 150, y: 440, questionId: "q3" },
-      { type: "scope", x: 970, y: 190, questionId: "q4" },
-      { type: "scope", x: 970, y: 300, questionId: "q5" },
-      { type: "scope", x: 1180, y: 160, questionId: "q6" },
-      { type: "scopeLoop", x: 1100, y: 490, questionId: "q7" },
+      { type: "scope", x: 75, y: 100, questionId: "q1" },
+      { type: "scope", x: 75, y: 320, questionId: "q2" },
+      { type: "scope", x: 1285, y: 100, questionId: "q3" },
+      { type: "scope", x: 1285, y: 320, questionId: "q4" },
+      { type: "scope", x: 365, y: 200, questionId: "q5" },
+      { type: "scope", x: 980, y: 320, questionId: "q6" },
       { type: "loupe", x: 745, y: 440 },
     ],
     enemies: [
-      { x: 400, y: 200, range: 700, speed: 60, name: "E1" },
-      { x: 600, y: 350, range: 700, speed: 60, name: "E2" },
-      { x: 680, y: 50, range: 1000, speed: 60, name: "E3" },
+      {
+        x: 480,
+        y: 300,
+        range: 800,
+        speed: 60,
+        name: "E2",
+      },
     ],
   },
 };

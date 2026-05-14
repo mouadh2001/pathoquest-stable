@@ -18,6 +18,7 @@ export class EnemyManager {
     const enemy = scene.enemies.create(x, y, "enemy");
     enemy.setScale(0.2).setDepth(3);
     enemy.name = name;
+    enemy.spawnData = { x, heightAboveFloor, range, speed, name, type, aggroRange };
     // Resize physics body manually
     enemy.body.setSize(enemy.width * 0.3, enemy.height * 0.3);
     enemy.setCollideWorldBounds(false); // IMPORTANT
@@ -68,6 +69,19 @@ export class EnemyManager {
     newEnemy.x += 170;
 
     return newEnemy;
+  }
+
+  spawnEnemy(spawnData) {
+    if (!spawnData) return null;
+    return this.createEnemyRelative(
+      spawnData.x,
+      spawnData.heightAboveFloor,
+      spawnData.range,
+      spawnData.speed,
+      spawnData.name,
+      spawnData.type,
+      spawnData.aggroRange,
+    );
   }
 
   update() {
@@ -134,7 +148,20 @@ export class EnemyManager {
       // this.scene.sound.play("stompSfx");
 
       // Remove the enemy
+      const spawnData = enemy.spawnData;
       enemy.destroy();
+
+      // Remove one destroyable platform when an enemy is killed
+      const destroyablePlatforms = this.scene.destroyablePlatforms || [];
+      const platformToRemove = destroyablePlatforms.shift();
+      if (platformToRemove && platformToRemove.destroy) {
+        platformToRemove.destroy();
+      }
+
+      // Spawn a replacement enemy immediately only for Level 5
+      if (spawnData && this.scene.levelConfig?.key === "level5") {
+        this.spawnEnemy(spawnData);
+      }
 
       return true; // Enemy was killed
     }

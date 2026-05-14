@@ -92,6 +92,14 @@ export function createPlatformFromConfig(scene, platformConfig) {
     platformConfig.id,
   );
 
+  if (platformConfig.type === "destroy") {
+    platform.isDestroyable = true;
+    if (!scene.destroyablePlatforms) {
+      scene.destroyablePlatforms = [];
+    }
+    scene.destroyablePlatforms.push(platform);
+  }
+
   if (platformConfig.movement?.type === "elevator") {
     configureElevatorPlatform(scene, platform, platformConfig.movement);
   } else if (platformConfig.movement?.type === "horizontal_elevator") {
