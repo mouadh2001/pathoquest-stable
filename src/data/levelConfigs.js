@@ -163,7 +163,7 @@ export const LEVELS = {
     ],
     items: [
       { type: "scope", x: 150, y: 160, questionId: "q1" },
-      { type: "scope", x: 150, y: 290, questionId: "q2" },
+      { type: "scope", x: 190, y: 290, questionId: "q2" },
       { type: "scope", x: 150, y: 440, questionId: "q3" },
       { type: "scope", x: 970, y: 190, questionId: "q4" },
       { type: "scope", x: 970, y: 300, questionId: "q5" },
@@ -236,7 +236,7 @@ export const LEVELS = {
     items: [
       { type: "scope", x: 120, y: 160, questionId: "q1" },
       { type: "scope", x: 320, y: 270, questionId: "q2" },
-      { type: "scope", x: 500, y: 380, questionId: "q3" },
+      { type: "scope", x: 530, y: 380, questionId: "q3" },
       { type: "scope", x: 890, y: 380, questionId: "q4" },
       { type: "scope", x: 990, y: 190, questionId: "q5" },
       { type: "scope", x: 690, y: 190, questionId: "q6" },
@@ -301,7 +301,7 @@ export const LEVELS = {
             "More than one, but below half of Level 4 questions answered correctly on first try.",
         },
         gold: {
-          image: "../assets/badges/level4_badges/gold_badge.png",
+          image: "../assets/badges/level4_badges/golden_badge.png",
           description:
             "More than half of Level 4 questions answered correctly on first try.",
         },
