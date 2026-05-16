@@ -16,19 +16,19 @@ export const level1Questions = {
       },
       {
         text: 'Oups! It is not a fusiform tumor. Fusiform (spindle) cells are elongated and have tapered (pointed) ends. \n\nUsually both the nucleus and cytoplasm are elongated, but the term still applies for cells with spindle-shaped cytoplasmic outline but rounded (or only slightly oval) nucleus. \n\n"Fusiform" is derived from the Latin "fusus" meaning "spindle".',
-        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_b.png", title: "Fusiform (spindle) cells", source: "./data/level1Questions.js:19" }],
+        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_b.png", title: "Fusiform (spindle) cells", source: "./data/level1Questions.js:19" ,description:"Fusiform cells in myxoid liposarcoma"  }],
       },
       {
         text: "Oups! It is not a round cell tumor. A round cell tumor is characterised by round cells with often uniform round nuclei and increased nuclear-cytoplasmic ratio. \n\nEwing sarcoma (ES) is a small round cell sarcoma.",
-        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_c.png", title: "Round cell tumor", source: "./data/level1Questions.js:26" }],
+        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_c.png", title: "Round cell tumor", source: "./data/level1Questions.js:26", description:"Round cell tumor in Ewing sarcoma"  }],
       },
       {
         text: "Oups! It is not a pleomorphic tumor. Pleomorphic tumor cells are characterised by marked variation in size and shape, often including very large and bizarre forms. \n\nPleomorphic rhabdomyosarcoma is a pleomorphic tumor characterized by haphazardly arranged large highly pleomorphic cells with one or more irregular hyperchromatic nuclei.",
-        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_d.png", title: "Pleomorphic tumor", source: "./data/level1Questions.js:33" }],
+        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_d.png", title: "Pleomorphic tumor", source: "./data/level1Questions.js:33", description:"Pleomorphic tumor in pleomorphic rhabdomyosarcoma"  }],
       },
       {
         text: "Oups! It is not an epithelioid tumor. An epithelioid tumor is characterised by cells that resemble epithelial cells with a rounded or polygonal appearance and at least moderate amounts of cytoplasm and well-defined cell borders. \n\nEpithelioid sarcoma.",
-        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_e.png", title: "Epithelioid tumor", source: "./data/level1Questions.js:40" }],
+        imgs: [{ src: "../assets/tumeurs/level1/q1_rep_e.png", title: "Epithelioid tumor", source: "./data/level1Questions.js:40" ,description:"Epithelioid tumor in epithelioid sarcoma"  }],
       },
     ],
   },
@@ -45,11 +45,11 @@ export const level1Questions = {
     feedbacks: [
       {
         text: "Oups! It is not anastomosing vascular channels. Anastomosing vascular channels are large, irregular, and \"sinusoidal\" spaces lined by endothelial cells. These vessels are often filled with blood and can look very jagged and large, and are seen in malignant vascular tumors.",
-        imgs: [{ src: "../assets/tumeurs/level1/q2_rep_a.png", title: "Anastomosing vascular channels", source: "./data/level1Questions.js:47" }],
+        imgs: [{ src: "../assets/tumeurs/level1/q2_rep_a.png", title: "Anastomosing vascular channels", source: "./data/level1Questions.js:47", description:"Anastomosing vascular channels in Kaposi sarcoma" }],
       },
       {
         text: "True! It is a chicken wire vascular pattern. Chicken wire vessels are characterized by a very prominent, delicate network of thin-walled capillaries. These capillaries branch at right angles, creating a geometric grid that looks exactly like a wire fence or \"chicken wire\".",
-        imgs: [{ src: "../assets/tumeurs/level1/q2_rep_b.png", title: "Chicken wire vascular pattern", source: "./data/level1Questions.js:53" }],
+        imgs: [{ src: "../assets/tumeurs/level1/q2_rep_b.png", title: "Chicken wire vascular pattern", source: "./data/level1Questions.js:53", description:"Chicken wire vascular pattern in Kaposi sarcoma" }],
       },
       {
         text: "Oups! It is not staghorn vessels. Staghorn vessels are described as large, dilated (ectatic), thin-walled, and branching in a jagged, irregular \"antler-like\" or \"cleft-like\" pattern, often surrounded by thick collagen bundles or perivascular fibrosis. They are typical of Solitary Fibrous Tumors.",
@@ -128,6 +128,7 @@ export const level1Questions = {
       {
         text: "Yes! Gene fusion FUS::DDIT3 — that is exactly right! You've identified the key driver for this tumor.\n\nThe FUS::DDIT3 fusion gene results from the chromosomal translocation t(12;16)(q13;p11). This specific rearrangement is found in over 95% of cases, making it a \"pathognomonic\" finding — if you see it, you can be very certain of the diagnosis.",
         imgs: [{ src: "../assets/tumeurs/level1/q4_rep_e.png", title: "FUS::DDIT3 fusion gene", source: "./data/level1Questions.js:137" }],
+        audio: "../assets/tumeurs/level1/audio/media1.mp3"
       },
     ],
   },

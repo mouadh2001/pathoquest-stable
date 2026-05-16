@@ -85,6 +85,10 @@
 
           <div class="auth-toggle">
             <p>
+              Forgot your access code?
+              <a href="#" id="go-to-forgot-password">Reset it</a>
+            </p>
+            <p>
               Don't have an account?
               <a href="#" id="go-to-register">Create one</a>
             </p>
@@ -145,6 +149,45 @@
           <div class="auth-toggle">
             <p>
               Already have an account? <a href="#" id="go-to-login">Sign in</a>
+            </p>
+          </div>
+        </div>
+        <!-- FORGOT PASSWORD FORM -->
+        <div id="forgot-password-view" style="display: none">
+          <div class="logo-section">
+            <h2>Reset Access Code</h2>
+            <p>Verify your identity to reset your code</p>
+          </div>
+
+          <form id="forgot-password-form">
+            <div class="input-group">
+              <input
+                type="email"
+                id="reset-email"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+            
+            <div class="input-group">
+              <input
+                type="password"
+                id="reset-new-password"
+                placeholder="New Access Code"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-login">
+              <span class="btn-text">Reset Code</span>
+              <span class="loader"></span>
+            </button>
+            <p id="reset-error-message"></p>
+          </form>
+
+          <div class="auth-toggle">
+            <p>
+              Remembered your code? <a href="#" id="go-to-login-from-reset">Sign in</a>
             </p>
           </div>
         </div>

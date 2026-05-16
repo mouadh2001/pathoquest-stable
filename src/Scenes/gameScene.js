@@ -491,33 +491,28 @@ export default class GameScene extends Phaser.Scene {
       };
 
       const hasBonusData = Array.isArray(this.levelConfig.bonusInfo) && this.levelConfig.bonusInfo.length > 0;
-      const showCompletionModal = () => {
-        this.modal.showLevelCompleteMessage(
-          "🎉 Level Complete!",
-          completionMessage,
-          "Next Level",
-          continueToNextLevel,
-          () => {
-            showRewardModal();
-          },
-          hasBonusData ? () => {
-            showBonusModal();
-          } : null
-        );
-      };
-
       const showRewardModal = () => {
         this.modal.showRewardBadges(
-          badges.levelBadge,
           badges.rankingBadge,
           firstTryCount,
           questionCount,
-          showCompletionModal
+          continueToNextLevel
         );
       };
 
       const showBonusModal = () => {
-        this.modal.showBonusModal(this.levelConfig.bonusInfo, showCompletionModal);
+        this.modal.showBonusModal(this.levelConfig.bonusInfo, showRewardModal);
+      };
+
+      const showCompletionModal = () => {
+        this.modal.showLevelCompleteMessage(
+          "🎉 Level Complete!",
+          completionMessage,
+          null,
+          null,
+          hasBonusData ? null : showRewardModal,
+          hasBonusData ? showBonusModal : null
+        );
       };
 
       showCompletionModal();
@@ -639,21 +634,8 @@ export default class GameScene extends Phaser.Scene {
     };
   }
 
-  getLevelBadge(levelKey, levelConfig = {}) {
-    const levelNumber = levelKey.replace("level", "");
-    const completionBadge = levelConfig.badges?.completion || {};
-    return {
-      name: completionBadge.name || `Level ${levelNumber} Completion Badge`,
-      description:
-        completionBadge.description || `You have successfully completed Level ${levelNumber}!`,
-      image: completionBadge.image || `../assets/badges/badge_level_${levelNumber}.png`,
-      type: "level",
-    };
-  }
-
   getLevelCompletionBadges(levelKey, firstTryCount, totalQuestions, levelConfig = {}) {
     return {
-      levelBadge: this.getLevelBadge(levelKey, levelConfig),
       rankingBadge: this.getRankingBadge(levelKey, firstTryCount, totalQuestions, levelConfig),
       firstTryCount,
       totalQuestions,
@@ -664,7 +646,6 @@ export default class GameScene extends Phaser.Scene {
     // Show the current level's earned badges
     if (this.earnedBadges) {
       this.modal.showRewardBadges(
-        this.earnedBadges.levelBadge,
         this.earnedBadges.rankingBadge,
         this.earnedBadges.firstTryCount,
         this.earnedBadges.totalQuestions,

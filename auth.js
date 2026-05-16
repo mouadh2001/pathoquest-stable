@@ -21,6 +21,13 @@ const signupForm = document.getElementById("signup-form");
 const signupErrorMessage = document.getElementById("signup-error-message");
 const goToLogin = document.getElementById("go-to-login");
 
+// Forgot Password elements
+const forgotPasswordView = document.getElementById("forgot-password-view");
+const forgotPasswordForm = document.getElementById("forgot-password-form");
+const resetErrorMessage = document.getElementById("reset-error-message");
+const goToForgotPassword = document.getElementById("go-to-forgot-password");
+const goToLoginFromReset = document.getElementById("go-to-login-from-reset");
+
 // ===============================
 // IMPORTS
 // ===============================
@@ -49,18 +56,46 @@ window.addEventListener("load", () => {
 goToRegister.addEventListener("click", (e) => {
   e.preventDefault();
   loginView.style.display = "none";
+  forgotPasswordView.style.display = "none";
   signupView.style.display = "block";
   errorMessage.innerText = "";
   signupErrorMessage.innerText = "";
+  resetErrorMessage.innerText = "";
 });
 
 goToLogin.addEventListener("click", (e) => {
   e.preventDefault();
   signupView.style.display = "none";
+  forgotPasswordView.style.display = "none";
   loginView.style.display = "block";
   errorMessage.innerText = "";
   signupErrorMessage.innerText = "";
+  resetErrorMessage.innerText = "";
 });
+
+if (goToForgotPassword) {
+  goToForgotPassword.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginView.style.display = "none";
+    signupView.style.display = "none";
+    forgotPasswordView.style.display = "block";
+    errorMessage.innerText = "";
+    signupErrorMessage.innerText = "";
+    resetErrorMessage.innerText = "";
+  });
+}
+
+if (goToLoginFromReset) {
+  goToLoginFromReset.addEventListener("click", (e) => {
+    e.preventDefault();
+    forgotPasswordView.style.display = "none";
+    signupView.style.display = "none";
+    loginView.style.display = "block";
+    errorMessage.innerText = "";
+    signupErrorMessage.innerText = "";
+    resetErrorMessage.innerText = "";
+  });
+}
 
 // ===============================
 // LOGIN
@@ -168,6 +203,57 @@ signupForm.addEventListener("submit", async (e) => {
 });
 
 // ===============================
+// FORGOT PASSWORD
+// ===============================
+if (forgotPasswordForm) {
+  const resetButton = forgotPasswordForm.querySelector(".btn-login");
+
+  forgotPasswordForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    resetButton.classList.add("loading");
+    resetButton.disabled = true;
+
+    const email = document.getElementById("reset-email").value;
+    const newPassword = document.getElementById("reset-new-password").value;
+
+    try {
+      // Assuming the backend has a /reset-password endpoint
+      const response = await fetch(`${API_URL}/reset-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, newPassword }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Password reset successfully
+        resetErrorMessage.innerText = "";
+        showResetSuccess("Password reset successfully! Please log in.");
+
+        forgotPasswordForm.reset();
+
+        setTimeout(() => {
+          forgotPasswordView.style.display = "none";
+          loginView.style.display = "block";
+          errorMessage.innerText = "";
+          resetErrorMessage.innerText = "";
+        }, 2000);
+      } else {
+        showResetError(data.message || "Failed to reset password");
+      }
+    } catch (err) {
+      showResetError("Server error. Try again.");
+    } finally {
+      resetButton.classList.remove("loading");
+      resetButton.disabled = false;
+    }
+  });
+}
+
+// ===============================
 // SHOW GAME
 // ===============================
 function showGame() {
@@ -216,6 +302,26 @@ function showSignupSuccess(msg) {
   // Reset color after redirect
   setTimeout(() => {
     signupErrorMessage.style.color = "";
+  }, 2500);
+}
+
+function showResetError(msg) {
+  resetErrorMessage.innerText = msg;
+
+  // Hide controls on error
+  const controlsPanel = document.getElementById("controls-panel");
+  if (controlsPanel) {
+    controlsPanel.style.display = "none";
+  }
+}
+
+function showResetSuccess(msg) {
+  resetErrorMessage.innerText = msg;
+  resetErrorMessage.style.color = "#4ade80";
+
+  // Reset color after redirect
+  setTimeout(() => {
+    resetErrorMessage.style.color = "";
   }, 2500);
 }
 

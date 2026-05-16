@@ -46,17 +46,20 @@ export class ModalUI {
     const container = document.getElementById("modal-answers");
     container.innerHTML = "";
 
-    const actionBtn = document.createElement("button");
-    actionBtn.innerText = buttonText;
-    actionBtn.className = "answer-btn";
-    actionBtn.style.background = "#3b82f6";
-    actionBtn.style.color = "#ffffff";
-    actionBtn.style.marginTop = "20px";
+    let actionBtn = null;
+    if (buttonText) {
+      actionBtn = document.createElement("button");
+      actionBtn.innerText = buttonText;
+      actionBtn.className = "answer-btn";
+      actionBtn.style.background = "#3b82f6";
+      actionBtn.style.color = "#ffffff";
+      actionBtn.style.marginTop = "20px";
 
-    actionBtn.onclick = () => {
-      this.closeModal();
-      if (onConfirm) onConfirm();
-    };
+      actionBtn.onclick = () => {
+        this.closeModal();
+        if (onConfirm) onConfirm();
+      };
+    }
 
     const buttonGroup = document.createElement("div");
     buttonGroup.style.display = "flex";
@@ -95,7 +98,9 @@ export class ModalUI {
     }
 
     container.appendChild(buttonGroup);
-    container.appendChild(actionBtn);
+    if (actionBtn) {
+      container.appendChild(actionBtn);
+    }
     document.getElementById("modal").style.display = "flex";
   }
 
@@ -254,8 +259,10 @@ export class ModalUI {
     // 1. Reset UI
     questionText.innerText = data.q;
     container.innerHTML = "";
-    feedback.innerText = "";
+    feedback.innerHTML = "";
     feedback.className = "feedback-area"; // For CSS styling
+    const feedbackImagesContainer = document.getElementById("feedback-images");
+    if (feedbackImagesContainer) feedbackImagesContainer.innerHTML = "";
 
     // 2. Create Buttons
     data.a.forEach((ans, i) => {
@@ -276,32 +283,135 @@ export class ModalUI {
 
         const feedbackImg = document.getElementById("modal-image");
 
-        // 🧠 Show feedback TEXT
-        feedback.innerText =
-          fb?.text || (isCorrect ? "Correct!" : "Incorrect!");
+        // 🧠 Show feedback TEXT (Accumulated)
+        const fbText = fb?.text || (isCorrect ? "Correct!" : "Incorrect!");
+        const fbBlock = document.createElement("div");
+        fbBlock.style.marginBottom = "10px";
+        fbBlock.style.padding = "8px";
+        fbBlock.style.borderRadius = "6px";
+        fbBlock.style.backgroundColor = isCorrect ? "#dcfce7" : "#fee2e2";
+        fbBlock.style.color = isCorrect ? "#166534" : "#b91c1c";
+        fbBlock.style.borderLeft = isCorrect ? "4px solid #166534" : "4px solid #b91c1c";
+        fbBlock.style.textAlign = "left";
+        fbBlock.innerHTML = `<strong>${ans}</strong><br/>${fbText}`;
+        feedback.appendChild(fbBlock);
 
-        const feedbackImagesContainer =
-          document.getElementById("feedback-images");
-
-        // 🖼️ Show feedback IMAGES
-        feedbackImagesContainer.innerHTML = ""; // clear previous
-
+        // 🖼️ Show feedback IMAGES (Accumulated)
         if (fb?.imgs && fb.imgs.length > 0) {
+          const imgWrapper = document.createElement("div");
+          imgWrapper.style.display = "flex";
+          imgWrapper.style.flexDirection = "column";
+          imgWrapper.style.alignItems = "center";
+          imgWrapper.style.margin = "8px";
+          imgWrapper.style.padding = "10px";
+          imgWrapper.style.background = "#f8fafc";
+          imgWrapper.style.border = "1px solid #cbd5e1";
+          imgWrapper.style.borderRadius = "8px";
+          
+          const imgDesc = document.createElement("span");
+          // Truncate long answer text for the small description
+          const shortAns = ans.length > 30 ? ans.substring(0, 30) + "..." : ans;
+          imgDesc.innerText = `Images for: ${shortAns}`;
+          imgDesc.style.marginBottom = "8px";
+          imgDesc.style.fontSize = "0.85em";
+          imgDesc.style.color = "#334155";
+          imgDesc.style.textAlign = "center";
+          imgDesc.style.maxWidth = "200px";
+          imgWrapper.appendChild(imgDesc);
+
           const viewImagesBtn = document.createElement("button");
           viewImagesBtn.innerText = "View Images";
           viewImagesBtn.className = "answer-btn";
           viewImagesBtn.style.background = "#f59e0b";
           viewImagesBtn.style.color = "#1f2937";
-          viewImagesBtn.style.marginTop = "15px";
-          viewImagesBtn.style.maxWidth = "200px";
-          viewImagesBtn.style.marginLeft = "auto";
-          viewImagesBtn.style.marginRight = "auto";
+          viewImagesBtn.style.margin = "0";
+          viewImagesBtn.style.padding = "6px 12px";
+          viewImagesBtn.style.fontSize = "0.9em";
+          viewImagesBtn.style.width = "auto";
           viewImagesBtn.onclick = () => {
             this.showFeedbackImagesModal(fb.imgs);
           };
-          feedbackImagesContainer.appendChild(viewImagesBtn);
-        } else {
-          feedbackImagesContainer.innerHTML = ""; // nothing to show
+          imgWrapper.appendChild(viewImagesBtn);
+
+          if (fb.audio) {
+            const audioPlayer = document.createElement("audio");
+            audioPlayer.controls = true;
+            audioPlayer.src = fb.audio;
+            audioPlayer.style.marginTop = "12px";
+            audioPlayer.style.width = "100%";
+            audioPlayer.style.maxWidth = "220px";
+            audioPlayer.style.outline = "none";
+            
+            // Pause/resume background music
+            audioPlayer.addEventListener("play", () => {
+              if (this.scene.bgMusic && this.scene.bgMusic.isPlaying) {
+                this.scene.bgMusic.pause();
+              }
+            });
+            audioPlayer.addEventListener("pause", () => {
+              if (this.scene.bgMusic && this.scene.bgMusic.isPaused) {
+                this.scene.bgMusic.resume();
+              }
+            });
+            audioPlayer.addEventListener("ended", () => {
+              if (this.scene.bgMusic && this.scene.bgMusic.isPaused) {
+                this.scene.bgMusic.resume();
+              }
+            });
+
+            imgWrapper.appendChild(audioPlayer);
+          }
+
+          if (feedbackImagesContainer) feedbackImagesContainer.appendChild(imgWrapper);
+        } else if (fb?.audio) {
+          // If there is no image but there IS audio
+          const audioWrapper = document.createElement("div");
+          audioWrapper.style.display = "flex";
+          audioWrapper.style.flexDirection = "column";
+          audioWrapper.style.alignItems = "center";
+          audioWrapper.style.margin = "8px";
+          audioWrapper.style.padding = "10px";
+          audioWrapper.style.background = "#f8fafc";
+          audioWrapper.style.border = "1px solid #cbd5e1";
+          audioWrapper.style.borderRadius = "8px";
+          
+          const audioDesc = document.createElement("span");
+          const shortAns = ans.length > 30 ? ans.substring(0, 30) + "..." : ans;
+          audioDesc.innerText = `Audio for: ${shortAns}`;
+          audioDesc.style.marginBottom = "8px";
+          audioDesc.style.fontSize = "0.85em";
+          audioDesc.style.color = "#334155";
+          audioDesc.style.textAlign = "center";
+          audioDesc.style.maxWidth = "200px";
+          audioWrapper.appendChild(audioDesc);
+
+          const audioPlayer = document.createElement("audio");
+          audioPlayer.controls = true;
+          audioPlayer.src = fb.audio;
+          audioPlayer.style.width = "100%";
+          audioPlayer.style.maxWidth = "220px";
+          audioPlayer.style.outline = "none";
+
+          // Pause/resume background music
+          audioPlayer.addEventListener("play", () => {
+            if (this.scene.bgMusic && this.scene.bgMusic.isPlaying) {
+              this.scene.bgMusic.pause();
+            }
+          });
+          audioPlayer.addEventListener("pause", () => {
+            if (this.scene.bgMusic && this.scene.bgMusic.isPaused) {
+              this.scene.bgMusic.resume();
+            }
+          });
+          audioPlayer.addEventListener("ended", () => {
+            if (this.scene.bgMusic && this.scene.bgMusic.isPaused) {
+              this.scene.bgMusic.resume();
+            }
+          });
+
+          audioWrapper.appendChild(audioPlayer);
+
+          if (feedbackImagesContainer) feedbackImagesContainer.appendChild(audioWrapper);
         }
 
         if (isCorrect) {
@@ -314,7 +424,7 @@ export class ModalUI {
           b.style.background = "#dcfce7";
           b.style.color = "#15803d";
 
-          feedback.style.color = "#166534";
+          // Removed global feedback color override
 
           this.selectedCorrect.add(i);
 
@@ -346,7 +456,7 @@ export class ModalUI {
           b.style.background = "#fee2e2";
           b.style.color = "#b91c1c";
 
-          feedback.style.color = "#ed9f18";
+          // Removed global feedback color override
 
           const closeBtn = document.createElement("button");
           closeBtn.innerText = "Close";
@@ -384,6 +494,9 @@ export class ModalUI {
 
       const feedbackImagesContainer = document.getElementById("feedback-images");
       if (feedbackImagesContainer) {
+        const audioPlayers = feedbackImagesContainer.querySelectorAll("audio");
+        audioPlayers.forEach(player => player.pause());
+
         feedbackImagesContainer.innerHTML = "";
         feedbackImagesContainer.style.flexDirection = "row";
         feedbackImagesContainer.style.alignItems = "center";
@@ -398,18 +511,15 @@ export class ModalUI {
     this.selectedCorrect = null;
   }
 
-  showRewardBadges(levelBadge, rankingBadge, firstTryCount, totalQuestions, onConfirm) {
+  showRewardBadges(rankingBadge, firstTryCount, totalQuestions, onConfirm) {
     this.scene.popupOpen = true;
     this.scene.physics.pause();
 
-    document.getElementById("modal-question").innerText = "🏆 BADGES EARNED! 🏆";
+    document.getElementById("modal-question").innerText = "🏆 BADGE EARNED! 🏆";
 
     const feedback = document.getElementById("modal-feedback");
     feedback.innerHTML = `
       <strong style="color: #166534; font-size: 1.1em; display: block; margin-bottom: 15px;">
-        ${levelBadge.name}
-      </strong>
-      <strong style="color: #166534; font-size: 1.1em; display: block; margin-top: 15px;">
         You answered correctly ${firstTryCount}/${totalQuestions} questions on the first try
       </strong>
       <strong style="color: #166534; font-size: 1.1em; display: block; margin-top: 10px;">
@@ -422,7 +532,7 @@ export class ModalUI {
     const feedbackImagesContainer = document.getElementById("feedback-images");
     feedbackImagesContainer.innerHTML = "";
 
-    const badgeImages = [levelBadge.image, rankingBadge.image];
+    const badgeImages = [rankingBadge.image];
     badgeImages.forEach((badgeUrl) => {
       const img = document.createElement("img");
       img.src = badgeUrl;
@@ -440,7 +550,7 @@ export class ModalUI {
     container.innerHTML = "";
 
     const continueBtn = document.createElement("button");
-    continueBtn.innerText = "Continue";
+    continueBtn.innerText = "Next Level";
     continueBtn.className = "answer-btn";
     continueBtn.style.background = "#3b82f6";
     continueBtn.style.color = "#ffffff";
@@ -510,6 +620,7 @@ export class ModalUI {
       const src = typeof imgObj === "string" ? imgObj : (imgObj.src || imgObj.path);
       const title = typeof imgObj === "string" ? "" : (imgObj.title || "");
       const source = typeof imgObj === "string" ? "" : (imgObj.source || "");
+      const description = typeof imgObj === "string" ? "" : (imgObj.description || "");
 
       if (!src) return;
 
@@ -518,13 +629,13 @@ export class ModalUI {
       wrapper.style.width = "100%";
       wrapper.style.textAlign = "center";
 
-      if (title) {
-        const titleEl = document.createElement("h3");
-        titleEl.innerText = title;
-        titleEl.style.color = "#1e293b";
-        titleEl.style.marginBottom = "12px";
-        titleEl.style.fontSize = "1.2rem";
-        wrapper.appendChild(titleEl);
+      if (description) {
+        const descEl = document.createElement("p");
+        descEl.innerText = description;
+        descEl.style.color = "#334155";
+        descEl.style.marginBottom = "12px";
+        descEl.style.fontSize = "1.1rem";
+        wrapper.appendChild(descEl);
       }
 
       const img = document.createElement("img");
@@ -540,12 +651,22 @@ export class ModalUI {
       img.style.boxShadow = "0 0 10px rgba(0,0,0,0.15)";
       wrapper.appendChild(img);
 
+      if (title) {
+        const titleEl = document.createElement("h3");
+        titleEl.innerText = title;
+        titleEl.style.color = "#1e293b";
+        titleEl.style.marginTop = "16px";
+        titleEl.style.marginBottom = "4px";
+        titleEl.style.fontSize = "1.2rem";
+        wrapper.appendChild(titleEl);
+      }
+
       if (source) {
         const sourceEl = document.createElement("p");
         sourceEl.innerText = `Source: ${source}`;
         sourceEl.style.color = "#4b5563";
         sourceEl.style.fontSize = "0.9rem";
-        sourceEl.style.marginTop = "10px";
+        sourceEl.style.marginTop = "4px";
         sourceEl.style.fontStyle = "italic";
         wrapper.appendChild(sourceEl);
       }

@@ -16,10 +16,7 @@ export const LEVELS = {
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=6025",
     badges: {
-      completion: {
-        image: "../assets/badges/level1_badges/badge_level_1.png",
-        description: "Level 1 completion badge earned for finishing the case.",
-      },
+
       ranking: {
         bronze: {
           image: "../assets/badges/level1_badges/bronze_badge.png",
@@ -103,10 +100,7 @@ export const LEVELS = {
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=13032",
     badges: {
-      completion: {
-        image: "../assets/badges/level2_badges/badge_level_2.png",
-        description: "Level 2 completion badge earned for completing the case.",
-      },
+
       ranking: {
         bronze: {
           image: "../assets/badges/level2_badges/bronze_badge.png",
@@ -189,10 +183,7 @@ export const LEVELS = {
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=25913",
     badges: {
-      completion: {
-        image: "../assets/badges/level3_badges/badge_level_2.png",
-        description: "Level 3 completion badge earned for finishing the case.",
-      },
+
       ranking: {
         bronze: {
           image: "../assets/badges/level3_badges/bronze_badge.png",
@@ -286,10 +277,7 @@ export const LEVELS = {
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23180",
     badges: {
-      completion: {
-        image: "../assets/badges/level4_badges/badge_level_4.png",
-        description: "Level 4 completion badge earned for finishing the case.",
-      },
+
       ranking: {
         bronze: {
           image: "../assets/badges/level4_badges/bronze_badge.png",
@@ -422,10 +410,7 @@ export const LEVELS = {
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23278",
     badges: {
-      completion: {
-        image: "../assets/badges/level5_badges/badge_level_5.png",
-        description: "Level 5 completion badge earned for finishing the case.",
-      },
+
       ranking: {
         bronze: {
           image: "../assets/badges/level5_badges/bronze_badge.png",
@@ -460,35 +445,35 @@ export const LEVELS = {
     ],
     platforms: [
       { x: 135, y: 120, width: 25, height: 100, id: "q1_cage" }, // q1
-      { x: 75, y: 60, width: 150, height: 20, id: "q1_cage" }, // q1
-      { x: 75, y: 160, width: 150, height: 20, id: "q1_cage", type: "destroy" }, // q1
+      { x: 75, y: 60, width: 145, height: 20, id: "q1_cage" }, // q1
+      { x: 75, y: 160, width: 145, height: 20, id: "q1_cage", type: "destroy" }, // q1
 
-      { x: 75, y: 380, width: 150, height: 20, id: "q2", type: "destroy" }, // q2
+      { x: 75, y: 380, width: 145, height: 20, id: "q2", type: "destroy" }, // q2
       { x: 135, y: 340, width: 25, height: 100, id: "q2_cage" }, // q2
-      { x: 75, y: 280, width: 150, height: 20, id: "q2_cage" }, // q2
+      { x: 75, y: 280, width: 145, height: 20, id: "q2_cage" }, // q2
 
       { x: 1180, y: 120, width: 25, height: 100, id: "q3_cage" }, // q3
-      { x: 1245, y: 60, width: 150, height: 20, id: "q3_cage" }, // q3
+      { x: 1245, y: 60, width: 145, height: 20, id: "q3_cage" }, // q3
       {
         x: 1245,
         y: 160,
-        width: 150,
+        width: 145,
         height: 20,
         id: "q3_cage",
         type: "destroy",
       }, // q3
 
-      { x: 1245, y: 380, width: 150, height: 20, id: "q4", type: "destroy" }, // q4
+      { x: 1245, y: 380, width: 145, height: 20, id: "q4", type: "destroy" }, // q4
       { x: 1180, y: 340, width: 25, height: 100, id: "q4_cage" }, // q4
-      { x: 1245, y: 280, width: 150, height: 20, id: "q4_cage" }, // q4
+      { x: 1245, y: 280, width: 145, height: 20, id: "q4_cage" }, // q4
 
       { x: 410, y: 220, width: 25, height: 100, id: "q5_cage" }, // q5
       { x: 280, y: 220, width: 25, height: 100, id: "q5_cage" }, // q5
-      { x: 345, y: 160, width: 150, height: 20, id: "q5_cage" }, // q5
+      { x: 345, y: 160, width: 145, height: 20, id: "q5_cage" }, // q5
       {
         x: 345,
         y: 260,
-        width: 150,
+        width: 145,
         height: 20,
         id: "q5_cage",
         type: "destroy",
@@ -496,8 +481,8 @@ export const LEVELS = {
 
       { x: 1005, y: 340, width: 25, height: 100, id: "q6_cage" }, // q6
       { x: 880, y: 340, width: 25, height: 100, id: "q6_cage" }, // q6
-      { x: 945, y: 280, width: 150, height: 20, id: "q6_cage" }, // q6
-      { x: 945, y: 380, width: 150, height: 20, id: "q6", type: "destroy" }, // q6
+      { x: 945, y: 280, width: 145, height: 20, id: "q6_cage" }, // q6
+      { x: 945, y: 380, width: 145, height: 20, id: "q6", type: "destroy" }, // q6
 
       {
         x: 150,

@@ -110,18 +110,18 @@ export const level2Questions = {
   // Q4: PPT Slide 20 — correct answers: D (Mitosis) + E (Nuclear atypia) → indices [3, 4]
   // A=False (abrupt necrosis), B=False (individual necrotic cells), C=False (infarct-type necrosis), D=True (mitosis), E=True (nuclear atypia)
   q4: {
-    q: "Does this tumor present? (Select all that apply)",
+    q: "Does this tumor present? ",
     a: [
       "Abrupt tumor necrosis",
       "Individual necrotic cells",
       "Infarct-type necrosis",
-      "Mitotic figures",
+      "Numerous figures",
       "Nuclear atypia",
     ],
     c: [3, 4],
     feedbacks: [
       {
-        text: "False. Abrupt tumor necrosis is characterized by an abrupt or sharp transition from viable to nonviable area without intervening granulation tissue, fibrosis, hyalinization, or associated inflammation. It has a geographical map appearance with scattered karyorrhectic debris and ghost outlines of tumor cells with hyperchromatic, pleomorphic nuclei. This is not seen in our case.",
+        text: "Yes, there is abrupt tumor necrosis in our case. Abrupt tumor necrosis (yellow star) is characterized by an abrupt or sharp transition from viable to nonviable area without intervening granulation tissue, fibrosis, hyalinization, or associated inflammation.Aspect in geographical mapShows scattered karyorrhectic debris. Ghost outlines of tumor cells and hyperchromatic, and pleomorphic nuclei. It is a coagulative necrosis ",
         imgs: [{ src: "../assets/tumeurs/level2/q4_rep_a.png", title: "Abrupt tumor necrosis", source: "./data/level2Questions.js:150" }],
       },
       {
