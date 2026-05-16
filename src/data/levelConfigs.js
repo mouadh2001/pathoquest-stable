@@ -221,6 +221,7 @@ export const LEVELS = {
         images: [
           "../assets/bonusinfo/level3_imgs/bonus1.png",
           "../assets/bonusinfo/level3_imgs/bonus2.png",
+          "../assets/bonusinfo/level3_imgs/bonus3.png",
         ],
       },
     ],
@@ -417,7 +418,7 @@ export const LEVELS = {
     spawn: { x: 100, y: 100 },
     questionData: level5Questions,
     questionCount: 6,
-    hint: "A 34-year-old man presented with a painless mass of 3 cm in the leg. Deep-seated angiosarcoma typically presents as a rapidly enlarging, painless soft tissue mass that may become tender due to internal hemorrhage or necrosis. Its highly vascular nature often leads to spontaneous bleeding, local swelling, or compressive symptoms depending on its anatomical location. Given its aggressive behavior, the tumor is characterized by rapid infiltrative growth and a high propensity for early systemic metastasis.",
+    hint: "A 34-year-old man presented with a painless mass of 3 cm in the leg. Deep-seated angiosarcoma typically presents as a rapidly enlarging, painless soft tissue mass that may become tender due to internal hemorrhage or necrosis. Its highly vascular nature often leads to spontaneous bleeding, local swelling, or compressive symptoms depending on its anatomical location. Given its aggressive behavior, the tumor is characterized by rapid infiltrative growth and a high propensity for early systemic metastasis.\n\nYou have to kill enemys to open the cages",
     loupeLink:
       "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23278",
     badges: {
