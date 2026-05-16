@@ -17,7 +17,7 @@ export default class TutorialScene extends Phaser.Scene {
       },
       {
         title: "Scopes",
-        text: "To progress, reach the microscope. Answer the hierarchical questions, identify the tumor, and climb the ranks of your specialty. \n\nThe magnifying glass allows you to see the virtual slide. You have 3 lives. You can answer one proposition per question. \n\nYou have Unlimited number of attempts to answer questions but your score decreases with attempts and time.",
+        text: "To progress, reach the microscope. Answer the hierarchical questions, identify the tumor, and climb the ranks of your specialty. \n\nThe magnifying glass allows you to see the virtual slide. You have 3 lives. You can answer One proposition or More per question. \n\nYou have Unlimited number of attempts to answer questions but your score decreases with attempts and time.\n\nYour diagnostic precision on the first pass will determine your final ranking: Diamond, Gold, Silver, or Bronze level.",
       },
       {
         title: "Threats",
@@ -60,13 +60,13 @@ export default class TutorialScene extends Phaser.Scene {
     this.prevButton = this.createButton(
       width / 2 - 150,
       height - 60,
-      "Précédent",
+      "Previous",
       () => this.prevPage(),
     );
     this.nextButton = this.createButton(
       width / 2 + 150,
       height - 60,
-      "Suivant",
+      "Next",
       () => this.nextPage(),
     );
 
@@ -74,7 +74,7 @@ export default class TutorialScene extends Phaser.Scene {
     this.skipButton = this.createButton(
       width - 120,
       60,
-      "Passer",
+      "Skip",
       () => this.finishTutorial(),
       "#555555",
       "#888888",
@@ -123,10 +123,10 @@ export default class TutorialScene extends Phaser.Scene {
     this.prevButton.setVisible(this.currentPageIndex > 0);
 
     if (this.currentPageIndex === this.pages.length - 1) {
-      this.nextButton.setText("Jouer !");
+      this.nextButton.setText("Play !");
       this.nextButton.setStyle({ backgroundColor: "#00aa44" });
     } else {
-      this.nextButton.setText("Suivant");
+      this.nextButton.setText("Next");
       this.nextButton.setStyle({ backgroundColor: "#0066aa" });
     }
   }

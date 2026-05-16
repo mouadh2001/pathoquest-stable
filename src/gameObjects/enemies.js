@@ -158,9 +158,14 @@ export class EnemyManager {
         platformToRemove.destroy();
       }
 
-      // Spawn a replacement enemy immediately only for Level 5
+      // Spawn a replacement enemy with a short delay only for Level 5
+      // if there are still cages left to open
       if (spawnData && this.scene.levelConfig?.key === "level5") {
-        this.spawnEnemy(spawnData);
+        if (this.scene.destroyablePlatforms && this.scene.destroyablePlatforms.length > 0) {
+          this.scene.time.delayedCall(500, () => {
+            this.spawnEnemy(spawnData);
+          });
+        }
       }
 
       return true; // Enemy was killed
@@ -175,7 +180,13 @@ export class EnemyManager {
       return; // Exit the function so the player doesn't die
     }
 
-    this.triggerDeath("⚠️ You were caught by an enemy!");
+    const deathMessages = [
+      "⚠️ malignant cell murdered you",
+      "⚠️ Malignant cell caught you",
+      "⚠️ A malignant cell has injured you"
+    ];
+    const randomMessage = deathMessages[Math.floor(Math.random() * deathMessages.length)];
+    this.triggerDeath(randomMessage);
   }
 
   triggerDeath(message = "⚠️ You died!") {

@@ -133,10 +133,11 @@ export class ModalUI {
           const img = document.createElement("img");
           img.src = imgPath;
           img.style.display = "block";
-          img.style.width = "100%";
-          img.style.maxWidth = "720px";
-          img.style.maxHeight = "480px";
+          img.style.width = "auto";
           img.style.height = "auto";
+          img.style.maxWidth = "min(100%, 720px)";
+          img.style.maxHeight = "60vh";
+          img.style.objectFit = "contain";
           img.style.margin = "14px auto";
           img.style.borderRadius = "8px";
           img.style.boxShadow = "0 0 10px rgba(0,0,0,0.15)";
@@ -286,14 +287,19 @@ export class ModalUI {
         feedbackImagesContainer.innerHTML = ""; // clear previous
 
         if (fb?.imgs && fb.imgs.length > 0) {
-          fb.imgs.forEach((imgPath) => {
-            const img = document.createElement("img");
-            img.src = imgPath;
-            img.style.display = "block";
-            img.style.maxWidth = "200px"; // optional styling
-            img.style.margin = "5px";
-            feedbackImagesContainer.appendChild(img);
-          });
+          const viewImagesBtn = document.createElement("button");
+          viewImagesBtn.innerText = "View Images";
+          viewImagesBtn.className = "answer-btn";
+          viewImagesBtn.style.background = "#f59e0b";
+          viewImagesBtn.style.color = "#1f2937";
+          viewImagesBtn.style.marginTop = "15px";
+          viewImagesBtn.style.maxWidth = "200px";
+          viewImagesBtn.style.marginLeft = "auto";
+          viewImagesBtn.style.marginRight = "auto";
+          viewImagesBtn.onclick = () => {
+            this.showFeedbackImagesModal(fb.imgs);
+          };
+          feedbackImagesContainer.appendChild(viewImagesBtn);
         } else {
           feedbackImagesContainer.innerHTML = ""; // nothing to show
         }
@@ -447,6 +453,107 @@ export class ModalUI {
 
     container.appendChild(continueBtn);
     document.getElementById("modal").style.display = "flex";
+  }
+
+  showFeedbackImagesModal(imgs) {
+    if (!document.getElementById("image-modal")) {
+      const modal = document.createElement("div");
+      modal.id = "image-modal";
+      modal.style.display = "none";
+      modal.style.position = "fixed";
+      modal.style.top = "0";
+      modal.style.left = "0";
+      modal.style.width = "100%";
+      modal.style.height = "100%";
+      modal.style.backgroundColor = "rgba(15, 23, 42, 0.85)";
+      modal.style.zIndex = "10000"; // Higher than #modal (9999)
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
+      modal.style.backdropFilter = "blur(5px)";
+
+      const content = document.createElement("div");
+      content.id = "image-modal-content";
+      content.className = "modal-content";
+      content.style.maxHeight = "90vh";
+      content.style.overflowY = "auto";
+      content.style.display = "flex";
+      content.style.flexDirection = "column";
+      content.style.alignItems = "center";
+      content.style.width = "90%";
+      content.style.maxWidth = "950px";
+
+      const imagesContainer = document.createElement("div");
+      imagesContainer.id = "image-modal-images";
+      imagesContainer.style.width = "100%";
+      
+      const closeBtn = document.createElement("button");
+      closeBtn.innerText = "Close";
+      closeBtn.className = "answer-btn";
+      closeBtn.style.background = "#ef4444";
+      closeBtn.style.color = "#ffffff";
+      closeBtn.style.marginTop = "20px";
+      closeBtn.onclick = () => {
+        modal.style.display = "none";
+      };
+
+      content.appendChild(imagesContainer);
+      content.appendChild(closeBtn);
+      modal.appendChild(content);
+      document.body.appendChild(modal);
+    }
+
+    const modal = document.getElementById("image-modal");
+    const container = document.getElementById("image-modal-images");
+    container.innerHTML = "";
+
+    imgs.forEach(imgObj => {
+      const src = typeof imgObj === "string" ? imgObj : (imgObj.src || imgObj.path);
+      const title = typeof imgObj === "string" ? "" : (imgObj.title || "");
+      const source = typeof imgObj === "string" ? "" : (imgObj.source || "");
+
+      if (!src) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.style.marginBottom = "24px";
+      wrapper.style.width = "100%";
+      wrapper.style.textAlign = "center";
+
+      if (title) {
+        const titleEl = document.createElement("h3");
+        titleEl.innerText = title;
+        titleEl.style.color = "#1e293b";
+        titleEl.style.marginBottom = "12px";
+        titleEl.style.fontSize = "1.2rem";
+        wrapper.appendChild(titleEl);
+      }
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.style.display = "block";
+      img.style.width = "auto";
+      img.style.height = "auto";
+      img.style.maxWidth = "min(100%, 720px)";
+      img.style.maxHeight = "70vh";
+      img.style.objectFit = "contain";
+      img.style.margin = "0 auto";
+      img.style.borderRadius = "8px";
+      img.style.boxShadow = "0 0 10px rgba(0,0,0,0.15)";
+      wrapper.appendChild(img);
+
+      if (source) {
+        const sourceEl = document.createElement("p");
+        sourceEl.innerText = `Source: ${source}`;
+        sourceEl.style.color = "#4b5563";
+        sourceEl.style.fontSize = "0.9rem";
+        sourceEl.style.marginTop = "10px";
+        sourceEl.style.fontStyle = "italic";
+        wrapper.appendChild(sourceEl);
+      }
+
+      container.appendChild(wrapper);
+    });
+
+    modal.style.display = "flex";
   }
 
   createHTMLModal() {

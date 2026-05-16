@@ -57,6 +57,8 @@ export default class GameScene extends Phaser.Scene {
     // Set level data from the selected config
     this.levelKey = this.scene.settings.data?.levelKey || "level1";
     this.StatsService.levelKey = this.levelKey;
+    this.destroyablePlatforms = []; // Clear destroyable platforms on restart
+    
     if (!this.isLevelUnlocked(this.levelKey)) {
       console.warn(
         `Level ${this.levelKey} is locked. Returning to level select.`,
@@ -311,8 +313,20 @@ export default class GameScene extends Phaser.Scene {
     );
 
     if (this.levelConfig.isDeadlyFloor && this.deadlyFloorRect) {
+      this.fallDeathCount = 0;
       this.physics.add.overlap(this.player, this.deadlyFloorRect, () => {
-        this.enemyManager.triggerDeath("⚠️ You fell to your doom!");
+        if (this.levelKey === "level4" || this.levelKey === "level5") {
+          const messages = [
+            "⚠️ Too bad! You've slipped into formaldehyde!",
+            "⚠️ Again! Drowning in formaldehyde!",
+            "⚠️ RIP : fixed for eternity in formaldehyde :("
+          ];
+          const msg = messages[this.fallDeathCount % messages.length];
+          this.fallDeathCount++;
+          this.enemyManager.triggerDeath(msg);
+        } else {
+          this.enemyManager.triggerDeath("⚠️ You fell to your doom!");
+        }
       });
     }
 
@@ -440,6 +454,9 @@ export default class GameScene extends Phaser.Scene {
         });
       }
     } else if (id === sequence[sequence.length - 1]) {
+      // Teleport player back to start to avoid re-triggering the scope collider
+      this.playerController.respawn();
+      
       // Level completed! Save progress, push stats, then go to next level.
       this.saveCompletedLevel(this.levelKey);
       console.log("🎉 Level Complete!");

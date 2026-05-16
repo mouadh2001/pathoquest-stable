@@ -12,23 +12,23 @@ export const level3Questions = {
     feedbacks: [
       {
         text: "Oups! It is not a myxoid tumor. A myxoid tumor is characterised by a gelatinous material produced by soft tissue cells. It resembles epithelial mucin, but is not as thick (looks like watered-down mucin – it is not as blue or stringy).\n\nThis is a myxoid pattern: Myxoid liposarcoma.",
-        imgs: ["../assets/tumeurs/level3/q1_rep_a.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q1_rep_a.png", title: "Myxoid tumor", source: "./data/level3Questions.js:12" }],
       },
       {
         text: 'Oups! It is not a spindle cell tumor. Fusiform (spindle) cells are elongated and have tapered (pointed) ends. Usually both the nucleus and cytoplasm are elongated, but the term still applies for cells with spindle-shaped cytoplasmic outline but rounded (or only slightly oval) nucleus. "Fusiform" is derived from the Latin "fusus" meaning "spindle".\n\nThis is a spindle cell pattern: Leiomyosarcoma (spindle cells).',
-        imgs: ["../assets/tumeurs/level3/q1_rep_b.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q1_rep_b.png", title: "Spindle cell tumor", source: "./data/level3Questions.js:19" }],
       },
       {
         text: "True! It is a round cell tumor. A round cell tumor is characterised by round cells with often uniform round nuclei and increased nuclear-cytoplasmic ratio.\n\nIn our case, the tumor is composed of small, uniform round cells under low-power examination.",
         imgs: [],
       },
       {
-        text: "Oups! It is not a pleomorphic tumor. A pleomorphic tumor is characterised by marked variation in size and shape, often including very large and bizarre forms.\n\nPleomorphic rhabdomyosarcoma is a pleomorphic tumor characterized by haphazardly arranged large highly pleomorphic cells with one or more irregular hyperchromatic nuclei.",
-        imgs: ["../assets/tumeurs/level3/q1_rep_d.png"],
+        text: "Oups! It is not a pleomorphic tumor. A pleomorphic tumor is characterized by marked variation in size and shape, often including very large and bizarre forms.\n\nPleomorphic rhabdomyosarcoma is a pleomorphic tumor characterized by haphazardly arranged large highly pleomorphic cells with one or more irregular hyperchromatic nuclei.",
+        imgs: [{ src: "../assets/tumeurs/level3/q1_rep_d.png", title: "Pleomorphic tumor", source: "./data/level3Questions.js:34" }],
       },
       {
         text: "Oups! It is not an epithelioid tumor. An epithelioid tumor is characterised by cells that resemble epithelial cells, with a rounded or polygonal appearance and at least moderate amounts of cytoplasm and well-defined cell borders.\n\nEpithelioid sarcoma is an example of an epithelioid tumor.",
-        imgs: ["../assets/tumeurs/level3/q1_rep_e.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q1_rep_e.png", title: "Epithelioid tumor", source: "./data/level3Questions.js:41" }],
       },
     ],
   },
@@ -45,23 +45,23 @@ export const level3Questions = {
     feedbacks: [
       {
         text: "Yes! It is a nested pattern. A nested pattern is characterised by packets or groups of cells separated by stroma.\n\nOur case: nested pattern.",
-        imgs: ["../assets/tumeurs/level3/q2_rep_a1.png", "../assets/tumeurs/level3/q2_rep_a2.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q2_rep_a1.png", title: "Nested pattern", source: "./data/level3Questions.js:59" }, { src: "../assets/tumeurs/level3/q2_rep_a2.png", title: "Nested pattern", source: "./data/level3Questions.js:59" }],
       },
       {
         text: "Yes! It is solid sheets also. A solid or sheet-like pattern is characterized by cells arranged in large, continuous, flat layers with no visible internal architecture or spaces between them.\n\nOur case: solid sheets.",
-        imgs: ["../assets/tumeurs/level3/q2_rep_b.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q2_rep_b.png", title: "Solid sheets", source: "./data/level3Questions.js:73" }],
       },
       {
         text: "Oups! It is not a storiform pattern. A storiform pattern is characterised by short fascicles of spindle cells that intersect or intertwine at various angles, thereby resembling the weaving of a doormat or starburst.\n\nExample: Dermatofibrosarcoma protuberans.",
-        imgs: ["../assets/tumeurs/level3/q2_rep_c1.png", "../assets/tumeurs/level3/q2_rep_c2.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q2_rep_c1.png", title: "Storiform pattern", source: "./data/level3Questions.js:88" }, { src: "../assets/tumeurs/level3/q2_rep_c2.png", title: "Storiform pattern", source: "./data/level3Questions.js:88" }],
       },
       {
         text: "Yes! It is a lobular pattern. A lobular pattern refers to an anatomic unit (as in breast lobule). When describing a lesion, the term implies that the lesion has a smooth (non-infiltrative) contour, conforming to or resembling normal anatomic structures. Sometimes used synonymously with nodular.\n\nOur case: lobular pattern.",
-        imgs: ["../assets/tumeurs/level3/q2_rep_d.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q2_rep_d.png", title: "Lobular pattern", source: "./data/level3Questions.js:102" }],
       },
       {
         text: "Oups! It is not an alveolar pattern. An alveolar pattern resembles lung alveoli. A pattern seen in some tumors in which nests of cells are centrally discohesive (fall apart) and paucicellular thereby appearing like empty spaces in the lung alveoli.\n\nAlveolar rhabdomyosarcoma: round cell tumour with the characteristic alveolar growth pattern.",
-        imgs: ["../assets/tumeurs/level3/q2_rep_e.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q2_rep_e.png", title: "Alveolar pattern", source: "./data/level3Questions.js:115" }],
       },
     ],
   },
@@ -78,23 +78,23 @@ export const level3Questions = {
     feedbacks: [
       {
         text: "Yes! The chromatin is finely granular.\n\nOur case: finely granular chromatin.",
-        imgs: ["../assets/tumeurs/level3/q3_rep_a.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q3_rep_a.png", title: "Finely granular chromatin", source: "./data/level3Questions.js:131" }],
       },
       {
         text: "Oups! There is no rhabdoid differentiation. Rhabdoid differentiation is characterized by cells with bright pink globular cytoplasmic inclusions resembling primitive skeletal muscle cells (rhabdomyoblasts). Usually accompanied by vesicular nuclei with prominent nucleoli.",
-        imgs: ["../assets/tumeurs/level3/q3_rep_b.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q3_rep_b.png", title: "Rhabdoid differentiation", source: "./data/level3Questions.js:141" }],
       },
       {
         text: 'Oups! There is no Homer-Wright rosette in our case. Homer-Wright rosettes (aka "fibrillary or neuroblastic" rosettes) have a central tangle of fibrillar processes (neuropil). There is no central vessel or lumen.\n\nFibrillar rosettes are pathognomonic for neuroblastic tumors (tumors with primitive neuron differentiation) – neuroblastoma, medulloblastoma, PNET, Ewing, pineoblastoma, retinoblastoma.\n\nEwing Sarcoma: well-formed pseudorosettes in a Ewing sarcoma with extensive neural differentiation (formerly known as peripheral primitive neuroectodermal tumor). Note the absence of nucleoli and the finely granular chromatin.',
-        imgs: ["../assets/tumeurs/level3/q3_rep_c1.png", "../assets/tumeurs/level3/q3_rep_c2.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q3_rep_c1.png", title: "Homer-Wright rosettes", source: "./data/level3Questions.js:163" }, { src: "../assets/tumeurs/level3/q3_rep_c2.png", title: "Homer-Wright rosettes", source: "./data/level3Questions.js:163" }],
       },
       {
         text: "Yes! There is coagulative necrosis in this tumor. Coagulative necrosis is characterised by an abrupt or sharp transition from viable to nonviable area without intervening granulation tissue, fibrosis, hyalinization, or associated inflammation.\n\nAspect in geographical map. Shows scattered karyorrhectic debris. Ghost outlines of tumor cells and hyperchromatic, and pleomorphic nuclei.\n\nOur case: Coagulative necrosis.",
-        imgs: ["../assets/tumeurs/level3/q3_rep_d.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q3_rep_d.png", title: "Coagulative necrosis", source: "./data/level3Questions.js:181" }],
       },
       {
         text: "Oups! There are cells with abundant clear cytoplasm (yellow arrow), but this is not a defining cytological feature of this tumor.",
-        imgs: ["../assets/tumeurs/level3/q3_rep_e.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q3_rep_e.png", title: "Cells with abundant clear cytoplasm", source: "./data/level3Questions.js:187" }],
       },
     ],
   },
@@ -111,19 +111,19 @@ export const level3Questions = {
     feedbacks: [
       {
         text: "True (part of the panel)! AE1/AE3 (pan-cytokeratin) is included in the initial screening panel to exclude carcinoma and other cytokeratin-positive tumors (e.g., synovial sarcoma, DSRCT).\n\nIn this tumor, AE1/AE3 is negative or only focally positive — which helps exclude carcinoma and narrows the diagnosis toward a non-epithelial small round cell tumor.\n\n➜ Conclusion: the negative AE1/AE3 is consistent with the diagnosis.",
-        imgs: ["../assets/tumeurs/level3/q4_rep_a.jpeg"],
+        imgs: [{ src: "../assets/tumeurs/level3/q4_rep_a.jpeg", title: "AE1/AE3 (pan-cytokeratin)", source: "./data/level3Questions.js:218" }],
       },
       {
         text: "True! CD99 (MIC2) is a key marker in small round cell tumors. It shows strong, diffuse membranous staining in approximately 95% of cases of this entity.\n\nHowever, CD99 is not specific — it can be positive in lymphoblastic lymphoma, synovial sarcoma, and other small round cell tumors. Always correlate with the full panel.\n\n➜ Conclusion: strong diffuse membranous CD99 positivity is a key step toward the diagnosis.",
-        imgs: ["../assets/tumeurs/level3/q4_rep_b.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q4_rep_b.png", title: "CD99 (MIC2)", source: "./data/level3Questions.js:236" }],
       },
       {
         text: "True (part of the panel)! Desmin is included in the initial screening panel to identify muscle differentiation and to exclude rhabdomyosarcoma and DSRCT (which may show dot-like desmin positivity).\n\nIn this tumor, desmin is negative — which excludes rhabdomyosarcoma and Desmoplastic Small Round Cell Tumors, and further narrows the differential.\n\n➜ Conclusion: desmin negativity supports a non-myogenic small round cell tumor.",
-        imgs: ["../assets/tumeurs/level3/q4_rep_c.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q4_rep_c.png", title: "Desmin", source: "./data/level3Questions.js:254" }],
       },
       {
         text: "True (part of the panel)! CD45 (LCA – Leukocyte Common Antigen) is included to exclude hematopoietic malignancies such as lymphoma, which can mimic small round cell sarcomas.\n\nIn this tumor, CD45 is negative — which excludes hematopoietic malignancies. Note: lymphoblastic lymphoma can also be CD99-positive, making CD45 critical for distinction.\n\n➜ Conclusion: CD45 negativity rules out lymphoma, bringing us one step closer to the final diagnosis.",
-        imgs: ["../assets/tumeurs/level3/q4_rep_d.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q4_rep_d.png", title: "CD45 (LCA – Leukocyte Common Antigen)", source: "./data/level3Questions.js:273" }],
       },
       {
         text: "Oups! PS100 is not the first-line antibody in this context. SMA is used to identify smooth muscle differentiation (e.g., leiomyosarcoma). In the setting of a small round cell tumor in a young patient, SMA is not a priority marker.",
@@ -144,23 +144,23 @@ export const level3Questions = {
     feedbacks: [
       {
         text: "Oups! It is not a DSRCT. Desmoplastic Small Round Cell Tumor (DSRCT) is a small round cell tumor, but its IHC profile is distinct: CK+ (dot-like), Desmin+ (dot-like), and WT1+ (C-terminal). It harbors the EWSR1::WT1 fusion.\n\nIn our case, CK and Desmin are both negative, making DSRCT unlikely.",
-        imgs: ["../assets/tumeurs/level3/q5_rep_a.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q5_rep_a.png", title: "Desmoplastic Small Round Cell Tumor (DSRCT)", source: "./data/level3Questions.js:319" }],
       },
       {
         text: "Oups! It is not an alveolar rhabdomyosarcoma. Rhabdomyosarcoma (alveolar type) can present as small round cells but shows Desmin+ and Myogenin+ staining, helping distinguish it from Ewing sarcoma.\n\nIn our case, Desmin is negative, making rhabdomyosarcoma unlikely.",
-        imgs: ["../assets/tumeurs/level3/q5_rep_b.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q5_rep_b.png", title: "Alveolar Rhabdomyosarcoma", source: "./data/level3Questions.js:333" }],
       },
       {
         text: "True! The IHC profile (CK−, Desmin−, CD45−, CD99 strong diffuse membranous+) is characteristic of Ewing sarcoma.\n\nCD99 strong membranous staining is present in ~95% of Ewing sarcomas. The negative markers exclude carcinoma (CK−), rhabdomyosarcoma (Desmin−), and lymphoma (CD45−).\n\nNB: NKX2-2 has a higher specificity than CD99.",
-        imgs: ["../assets/tumeurs/level3/q5_rep_c.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q5_rep_c.png", title: "Ewing sarcoma", source: "./data/level3Questions.js:344" }],
       },
       {
         text: "Oups! It is not a lymphoblastic lymphoma. Lymphoblastic lymphoma is a genuine pitfall: it presents as small round cells and can be CD99+. However, it is CD45+ (LCA+) and TdT+, which distinguishes it from Ewing sarcoma.\n\nIn our case, CD45 is negative — this rules out a hematopoietic malignancy.",
-        imgs: ["../assets/tumeurs/level3/q5_rep_d.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q5_rep_d.png", title: "Lymphoblastic Lymphoma", source: "./data/level3Questions.js:360" }],
       },
       {
         text: "Oups! It is not a poorly differentiated synovial sarcoma. Poorly differentiated synovial sarcoma can indeed present as small round cells and may be CD99+, making it a genuine diagnostic pitfall. However, it is typically CK+ and/or EMA+, and harbors the SS18::SSX fusion (detectable by FISH or NGS).\n\nIn our case, CK is negative, making synovial sarcoma unlikely.",
-        imgs: ["../assets/tumeurs/level3/q5_rep_e.png"],
+        imgs: [{ src: "../assets/tumeurs/level3/q5_rep_e.png", title: "Poorly differentiated synovial sarcoma", source: "./data/level3Questions.js:369" }],
       },
     ],
   },

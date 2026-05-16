@@ -314,7 +314,11 @@ export const LEVELS = {
     bonusInfo: [
       {
         text: "Squamous cell carcinomas of the lung are strongly associated with smoking and exhibit distinctive keratinization.",
-        images: ["../assets/bonusinfo/level4_imgs/bonus1.png"],
+        images: [
+          "../assets/bonusinfo/level4_imgs/bonus1.png",
+          "../assets/bonusinfo/level4_imgs/bonus2.png",
+          "../assets/bonusinfo/level4_imgs/bonus3.png",
+        ],
       },
     ],
     platforms: [
