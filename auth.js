@@ -118,9 +118,6 @@ loginForm.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Save it
-  localStorage.setItem("character", caracter);
-
   try {
     const response = await fetch(`${API_URL}/login`, {
       method: "POST",
@@ -134,6 +131,9 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (response.ok && data.token) {
       localStorage.setItem("token", data.token);
+      import("./src/utils.js").then((utils) => {
+        localStorage.setItem(utils.getUserDataKey("character"), caracter);
+      });
       showGame();
     } else {
       showLoginError("Invalid email or password");
@@ -215,6 +215,21 @@ if (forgotPasswordForm) {
 
     const email = document.getElementById("reset-email").value;
     const newPassword = document.getElementById("reset-new-password").value;
+    const confirmPassword = document.getElementById("reset-confirm-password").value;
+
+    if (newPassword !== confirmPassword) {
+      showResetError("Passwords do not match");
+      resetButton.classList.remove("loading");
+      resetButton.disabled = false;
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      showResetError("Password must be at least 6 characters");
+      resetButton.classList.remove("loading");
+      resetButton.disabled = false;
+      return;
+    }
 
     try {
       // Assuming the backend has a /reset-password endpoint

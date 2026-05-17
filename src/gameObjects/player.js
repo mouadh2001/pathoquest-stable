@@ -1,3 +1,5 @@
+import { getUserDataKey } from "../utils.js";
+
 export class PlayerController {
   constructor(scene, spawnPoint = {}) {
     this.scene = scene;
@@ -29,9 +31,9 @@ export class PlayerController {
       },
     };
     // Get the character selection from the DOM (Ensure this is available when the script runs)
-    const character = localStorage.getItem("character") || "man";
+    const character = localStorage.getItem(getUserDataKey("character")) || "man";
 
-    if (!localStorage.getItem("character")) {
+    if (!localStorage.getItem(getUserDataKey("character"))) {
       console.warn("No character selected, defaulting to man.");
     }
 

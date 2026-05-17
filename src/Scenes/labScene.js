@@ -1,4 +1,5 @@
 import { LEVELS } from "../data/levelConfigs.js";
+import { getUserDataKey } from "../utils.js";
 
 export default class LabScene extends Phaser.Scene {
   constructor() {
@@ -109,7 +110,7 @@ export default class LabScene extends Phaser.Scene {
 
   getCompletedLevels() {
     try {
-      return JSON.parse(localStorage.getItem("completedLevels") || "[]");
+      return JSON.parse(localStorage.getItem(getUserDataKey("completedLevels")) || "[]");
     } catch (err) {
       console.warn("Failed to parse completedLevels", err);
       return [];

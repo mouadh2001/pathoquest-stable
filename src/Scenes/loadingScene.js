@@ -1,4 +1,5 @@
 import { LEVELS } from "../data/levelConfigs.js";
+import { getUserDataKey } from "../utils.js";
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -7,7 +8,7 @@ export default class PreloaderScene extends Phaser.Scene {
 
   preload() {
     window.addEventListener("DOMContentLoaded", () => {
-      const savedCharacter = localStorage.getItem("character");
+      const savedCharacter = localStorage.getItem(getUserDataKey("character"));
 
       if (savedCharacter) {
         const radio = document.querySelector(

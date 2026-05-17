@@ -13,6 +13,7 @@ import { ModalUI } from "../gameObjects/modal.js";
 import { PlayerController } from "../gameObjects/player.js";
 import { StatsService } from "../../statsService.js";
 import { LEVELS } from "../data/levelConfigs.js";
+import { getUserDataKey } from "../utils.js";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -122,37 +123,67 @@ export default class GameScene extends Phaser.Scene {
 
     // Case Info button
     this.infoButton = this.add
-      .text(20, this.sys.game.config.height - 60, "📋 Case Info", {
+      .text(140, this.sys.game.config.height - 60, "📋 Case Info", {
         fontSize: "20px",
         fill: "#ffffff",
         backgroundColor: "#3498db",
         padding: { x: 10, y: 10 },
         fontStyle: "bold",
       })
+      .setOrigin(0.5)
       .setScrollFactor(0)
       .setDepth(2000)
       .setInteractive({ useHandCursor: true })
       .on("pointerover", () => this.infoButton.setStyle({ backgroundColor: "#2980b9" }))
       .on("pointerout", () => this.infoButton.setStyle({ backgroundColor: "#3498db" }))
       .on("pointerdown", () => {
+        if (this.infoButtonTween) {
+          this.infoButtonTween.stop();
+          this.infoButton.setScale(1);
+          this.infoButtonTween = null;
+        }
         this.hasCheckedInfo = true;
         this.checkFirstScopeUnlock();
         this.modal.showInfoMessage(this.levelConfig.hint || "Review the clinical case details before proceeding.", false, 0);
       });
 
+    this.infoButtonTween = this.tweens.add({
+      targets: this.infoButton,
+      scale: 1.5,
+      duration: 800,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut'
+    });
+
     // Permanent Loupe UI button
-    this.uiLoupe = this.add.image(this.sys.game.config.width - 200, this.sys.game.config.height - 60, "loupe")
+    this.uiLoupe = this.add.image(this.sys.game.config.width - 150, this.sys.game.config.height - 60, "loupe")
+      .setScale(0.5)
       .setScrollFactor(0)
       .setDepth(2000)
       .setInteractive({ useHandCursor: true })
-      .on("pointerover", () => this.uiLoupe.setScale(0.5))
-      .on("pointerout", () => this.uiLoupe.setScale(0.5))
+      .on("pointerover", () => this.uiLoupe.setTint(0xdddddd))
+      .on("pointerout", () => this.uiLoupe.clearTint())
       .on("pointerdown", () => {
+        if (this.uiLoupeTween) {
+          this.uiLoupeTween.stop();
+          this.uiLoupe.setScale(0.5);
+          this.uiLoupeTween = null;
+        }
         this.hasCheckedLoupe = true;
         this.checkFirstScopeUnlock();
         const link = this.levelConfig.loupeLink || "https://tumourclassification.iarc.who.int/Viewer/Index2?fid=23191";
         this.modal.openTumorMenu(null, link);
       });
+
+    this.uiLoupeTween = this.tweens.add({
+      targets: this.uiLoupe,
+      scale: 0.9,
+      duration: 800,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut'
+    });
 
     // Back to Levels button
     this.backButton = this.add
@@ -571,7 +602,7 @@ export default class GameScene extends Phaser.Scene {
 
   getCompletedLevels() {
     try {
-      return JSON.parse(localStorage.getItem("completedLevels") || "[]");
+      return JSON.parse(localStorage.getItem(getUserDataKey("completedLevels")) || "[]");
     } catch (err) {
       console.warn("Failed to parse completedLevels", err);
       return [];
@@ -583,7 +614,7 @@ export default class GameScene extends Phaser.Scene {
     if (!completed.has(levelKey)) {
       completed.add(levelKey);
       localStorage.setItem(
-        "completedLevels",
+        getUserDataKey("completedLevels"),
         JSON.stringify(Array.from(completed)),
       );
     }

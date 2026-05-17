@@ -28,38 +28,14 @@ body {
   flex-direction: column;
   align-items: center;
 
-  /* SCROLLBAR LOGIC */
   width: 100%;
   max-width: 650px; /* Keeps it from getting too wide */
-  max-height: 90vh; /* Prevents the form from leaving the screen */
-  overflow-y: auto; /* Enables vertical scrolling only when needed */
-  overflow-x: hidden; /* Prevents accidental horizontal shifting */
+  overflow: visible;
 
   animation: fadeIn 0.8s ease-in-out;
-
-  /* Custom Scrollbar Styling (Webkit) */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(78, 84, 200, 0.6) transparent;
 }
 
-/* Chrome, Edge, and Safari Scrollbar styling */
-#login-container::-webkit-scrollbar {
-  width: 6px;
-}
 
-#login-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#login-container::-webkit-scrollbar-thumb {
-  background-color: rgba(78, 84, 200, 0.6);
-  border-radius: 20px;
-  border: 1px solid transparent;
-}
-
-#login-container::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 242, 255, 0.8); /* Glows cyan on hover */
-}
 
 /* ===== Headings ===== */
 #login-container h2 {
@@ -71,7 +47,8 @@ body {
 
 /* ===== Inputs ===== */
 #login-form input,
-#signup-form input {
+#signup-form input,
+#forgot-password-form input {
   width: 100%;
   padding: 12px 15px;
   margin: 10px 0;
@@ -85,7 +62,8 @@ body {
 }
 
 #login-form input:focus,
-#signup-form input:focus {
+#signup-form input:focus,
+#forgot-password-form input:focus {
   border-color: #8f94fb;
   box-shadow: 0 0 10px #8f94fb;
   outline: none;
@@ -94,7 +72,8 @@ body {
 
 /* ===== Button ===== */
 #login-form button,
-#signup-form button {
+#signup-form button,
+#forgot-password-form button {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
@@ -111,7 +90,8 @@ body {
 }
 
 #login-form button:hover,
-#signup-form button:hover {
+#signup-form button:hover,
+#forgot-password-form button:hover {
   background: linear-gradient(45deg, #8f94fb, #4e54c8);
   box-shadow: 0 0 20px #8f94fb;
   transform: scale(1.05);
@@ -165,16 +145,18 @@ body {
 
 .auth-toggle p {
   color: #aaaaaa;
-  font-size: 12px;
+  font-size: 15px;
   text-shadow: none;
   white-space: normal;
   display: block;
+  margin-bottom: 10px;
 }
 
 .auth-toggle a {
   color: #00f2ff;
   text-decoration: none;
   font-weight: bold;
+  font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
   text-shadow: 0 0 5px #00f2ff;
@@ -287,6 +269,7 @@ body {
 .radio-group {
   display: flex;
   flex-direction: row; /* Force horizontal alignment */
+  justify-content: center; /* Center the buttons */
   gap: 12px; /* Space between the two buttons */
   width: 100%;
 }

@@ -630,11 +630,17 @@ export class ModalUI {
       wrapper.style.textAlign = "center";
 
       if (description) {
-        const descEl = document.createElement("p");
+        const descEl = document.createElement("div");
         descEl.innerText = description;
-        descEl.style.color = "#334155";
         descEl.style.marginBottom = "12px";
+        descEl.style.padding = "10px";
+        descEl.style.borderRadius = "6px";
+        descEl.style.backgroundColor = "#dcfce7";
+        descEl.style.color = "#166534";
+        descEl.style.borderLeft = "4px solid #166534";
+        descEl.style.textAlign = "left";
         descEl.style.fontSize = "1.1rem";
+        descEl.style.lineHeight = "1.5";
         wrapper.appendChild(descEl);
       }
 

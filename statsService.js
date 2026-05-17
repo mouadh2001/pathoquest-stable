@@ -1,3 +1,5 @@
+import { getUserDataKey } from "./src/utils.js";
+
 export class StatsService {
   constructor(levelKey = null) {
     this.levelKey = levelKey;
@@ -89,13 +91,13 @@ export class StatsService {
     // Update level score in localStorage to calculate total score
     let levelScores = {};
     try {
-      levelScores = JSON.parse(localStorage.getItem("levelScores") || "{}");
+      levelScores = JSON.parse(localStorage.getItem(getUserDataKey("levelScores")) || "{}");
     } catch(e) {}
     
     // "pas accumuler" -> update if it's better
     if (!levelScores[this.levelKey] || levelScore > levelScores[this.levelKey]) {
       levelScores[this.levelKey] = levelScore;
-      localStorage.setItem("levelScores", JSON.stringify(levelScores));
+      localStorage.setItem(getUserDataKey("levelScores"), JSON.stringify(levelScores));
     }
 
     const totalScore = Object.values(levelScores).reduce((sum, score) => sum + score, 0);
@@ -103,11 +105,11 @@ export class StatsService {
     // Progress
     let progress = [];
     try {
-      progress = JSON.parse(localStorage.getItem("completedLevels") || "[]");
+      progress = JSON.parse(localStorage.getItem(getUserDataKey("completedLevels")) || "[]");
     } catch(e) {}
 
     // Character
-    const character = localStorage.getItem("character") || "man";
+    const character = localStorage.getItem(getUserDataKey("character")) || "man";
 
     // Attempts per question
     const attemptsPerQuestion = {};
